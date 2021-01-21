@@ -194,3 +194,85 @@ form .btn input[type="submit"]{
   font-weight: 500;
   cursor: pointer;
 }
+.contact-wrapper
+{
+  overflow: hidden;
+  max-width: 200px;
+  background: rgba(255, 255, 255, 0.877);
+  padding: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.603);
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 20px;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.349);
+  text-align:left;
+  margin-bottom:10px;
+}
+
+.content-table thead tr {
+  background-color: #168e8e;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+  top:40px;
+  
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+  
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #fdfdfd;
+  background-color: #ffffff;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.form {
+ width: 1000%;
+  height: 900px;
+  position: absolute;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.input {
+  all: unset;
+  font: 16px system-ui;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  padding: 6px 10px;
+}
+.Add-list
+{
+  margin-top: 10px;
+box-shadow: #000;
+background-color: #f3f3f3ce;
+width:400px;
+height: 200px;
+border-radius: 30px;
+}
+
