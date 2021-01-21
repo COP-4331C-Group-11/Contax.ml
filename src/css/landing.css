@@ -10,7 +10,7 @@ html,body{
   height: 100%;
   width: 100%;
   place-items: center;
-  background: url("shapes.PNG")
+  background: url("../img/shapes.png")
 }
 .hand{
   
