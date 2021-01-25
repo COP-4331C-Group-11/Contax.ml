@@ -1,5 +1,6 @@
 <?php
 
+# If we don't get to this file from a submit button
 if (empty($_POST["submit"])) {
   header("location: /index.html");
   exit();

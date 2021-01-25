@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb-server
--- Generation Time: Jan 19, 2021 at 04:56 AM
+-- Generation Time: Jan 25, 2021 at 09:05 AM
 -- Server version: 10.1.48-MariaDB-1~bionic
 -- PHP Version: 7.4.1
 
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `Contax`
 --
-CREATE DATABASE IF NOT EXISTS `Contax`;
+CREATE DATABASE IF NOT EXISTS `Contax` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `Contax`;
 
 -- --------------------------------------------------------
@@ -30,23 +30,24 @@ USE `Contax`;
 -- Table structure for table `contacts`
 --
 
-DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE `contacts` (
   `id` int(12) NOT NULL,
   `userId` int(12) NOT NULL,
   `firstName` varchar(128) NOT NULL,
-  `last` varchar(128) NOT NULL,
+  `lastName` varchar(128) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `email` varchar(128) NOT NULL,
   `dateCreated` date NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `userId`, `firstName`, `last`, `phone`, `email`, `dateCreated`) VALUES
-(1, 1, 'patrick', 'star', '4206942069', 'patrickstar@gmail.com', '2021-01-06');
+INSERT INTO `contacts` (`id`, `userId`, `firstName`, `lastName`, `phone`, `email`, `dateCreated`) VALUES
+(1, 1, 'patrick', 'star', '4206942069', 'patrickstar@gmail.com', '2021-01-06'),
+(2, 1, 'mann', 'manor', '4074206969', 'mannmanor@hotmail.com', '2020-12-25'),
+(3, 2, 'gamer', 'man', '4074206969', 'gamerman@hotmail.com', '2020-12-25');
 
 -- --------------------------------------------------------
 
@@ -54,7 +55,6 @@ INSERT INTO `contacts` (`id`, `userId`, `firstName`, `last`, `phone`, `email`, `
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) NOT NULL,
   `firstName` varchar(128) NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE `users` (
   `dateLastOn` date NOT NULL,
   `username` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -97,7 +97,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
