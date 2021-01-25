@@ -15,7 +15,7 @@ function doLogin()
 var userId = 0;
 var firstName = "";
 var lastName = "";
-var phoneNumber =0;
+var phoneNumber = 0;
 
 //now get the log in and password information from the id status
 
@@ -163,7 +163,80 @@ function doLogout()
 // this is adding the contact files to the json package 
 function addContact()
 {
+  var newFirstName = document.getElementById("inputFirstName").value;
+  var newLastName = document.getElementById("inputLastName").value;
+  var newPhone = document.getElementById("inputPhone").value;
 
+  document.getElementById("newContactResult").innerHTML = "";
+
+  var jsonPayload = '{"firstname" : "' + newFirstName + '", "lastname" : "' + newLastName + '", "phone number" : "' + newPhone + '"}';
+  var url = urlBase + '/AddContact.' + extension;
+
+  var xhr = newXMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try
+  {
+    xhr.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+      {
+        document.getElementById(newContactResult).innerHTML = "Contact has been added";
+      }
+    };
+    xhr.send(jsonPayload);
+  }
+  catch(err)
+  {
+    document.getElementById("newContactResult").innerHTML = err.message;
+  }
 }
+
+//this is for searching a contact in the list
+function searchContact()
+{
+  var srch = document.getElementById("searchText").value;
+  document.getElementById("contactSearchResult").innerHTML = "";
+  
+  var contactList = "";
+  
+  var jsonPayload = '{"search" : "' + srch + '","userId" : ' + userId + '}';
+  var url = urlBase + '/SearchContacts.' + extension;
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try
+  {
+    //this code may not work if not using a list 
+    xhr.onreadystatechange = function() 
+    {
+      if (this.readyState == 4 && this.status == 200) 
+      {
+        document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+        var jsonObject = JSON.parse( xhr.responseText );
+        
+        for( var i=0; i<jsonObject.results.length; i++ )
+        {
+          contactList += jsonObject.results[i];
+          if( i < jsonObject.results.length - 1 )
+          {
+            contactList += "<br />\r\n";
+          }
+        }
+        
+        document.getElementsByTagName("p")[0].innerHTML = contactList;
+      }
+    };
+    xhr.send(jsonPayload);
+  }
+  catch(err)
+  {
+    document.getElementById("contactSearchResult").innerHTML = err.message;
+  }
+}
+
+
+
 
 
