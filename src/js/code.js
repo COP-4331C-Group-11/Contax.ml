@@ -48,7 +48,7 @@ function doLogin()
     lastName = jsonObject.lastName;
     saveCookie();
   
-    window.location.href = "../data.html";
+    window.location.href = "data.html";
   }
   catch(err)
   {
