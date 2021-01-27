@@ -12,7 +12,7 @@ It's a contact manager.
 
 1. You'll need is Docker. You can visit https://docs.docker.com/get-docker/ to find out how to install it.
 
-2. Run `docker-compose up` in the project directory.
+2. Run `docker-compose up` in the project directory. (You can use ctrl+C to exit)
 
 *Note: Windows users will need to run* `docker-compose.exe up` 
 
