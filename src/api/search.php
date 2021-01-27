@@ -11,8 +11,8 @@ require_once 'database.php';
 $contactTableSQL = getContactTable($conn, $userId);
 $contactTable = sqlTableToArray($contactTableSQL);
 $filteredTable = searchByString($contactTable, $searchStr);
-// printTable($filteredTable);
 
+// printTable($filteredTable);
 returnWithTable($filteredTable);
 
 function getContactTable($conn, $userId) {
@@ -51,14 +51,11 @@ function searchByString($table, $searchStr) {
     if (str_contains($row["firstName"], $searchStr) || str_contains($row["lastName"], $searchStr))
       array_push($result, $row);
 
-  if (count($result) <= 0 )
-    returnWithError("No records match search");
-
   return $result;
 }
 
 function returnWithTable($table) {
-  $json = "[";
+  $json = "{\"table\": [ ";
 
   foreach ($table as $row) {
     $json .= "{";
@@ -73,6 +70,9 @@ function returnWithTable($table) {
   }
   $json = substr($json, 0, -1);
   $json .= "]";
+
+  // Add empty error
+  $json .= ",\"error\": \"\"}";
 
   header('Content-type: application/json');
 	echo $json;
