@@ -3,14 +3,12 @@ const apiUrl="http://localhost:8080/api/search.php";
 // Event Listeners
 document.getElementById("contact-search")
   .addEventListener("keyup", (e) => {
+    console.log(e);
     updateTable(e.target.value);
   });
 
-main();
-
-async function main() {
-  updateTable("");
-}
+// Script start
+updateTable("");
 
 async function getContacts(searchStr) {
   // Wait for response
@@ -24,8 +22,7 @@ async function getContacts(searchStr) {
 
   // Convert response to string
   // Note: response.text() gives back a js object
-  const data = await response.text();
-  const obj = JSON.parse(data);
+  const obj = await response.json();
   
   return obj.table;
 }
@@ -49,9 +46,6 @@ function tableToHTML(table) {
 
 async function updateTable(searchStr) {
   const contactTable = await getContacts(searchStr);
-  if (contactTable === null)
-    return;
-
   const html = tableToHTML(contactTable);
   document.getElementById("contact-table").innerHTML = html;
 }
