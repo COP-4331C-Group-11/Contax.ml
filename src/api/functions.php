@@ -24,18 +24,6 @@ function invalidUid($username) {
     return $result;
 }
 
-function pwdMatch($password, $password2) {
-    $result;
-
-    if ($password != $password2) {
-        $result = true;
-    }
-    else {
-        $result = false;
-    }
-    return $result;
-}
-
 function uidExists($conn, $username) {
     $sql = "SELECT * FROM users WHERE username = ?;";
     $stmt = mysqli_stmt_init($conn);

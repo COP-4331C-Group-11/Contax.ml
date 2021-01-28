@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="css/landing.css">
   <script type="text/javascript" src="js/code.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 <body>
   <div class="logo">
-    <img src="images/Contact.png" width=150 alt="contact logo">
+    <img src="img/Contact.png" width=150 alt="contact logo">
   </div>
    >
   <div class="wrapper">
@@ -21,13 +21,13 @@ Registration Form</div>
 Signup Form</div>
 </div>
 <div class="hand">
-<img src="images/Mask Group 1.png" width="120">
+<img src="img/Mask-Group-1.png" width="120">
 </div>
 <div class="form-container">
      
 </div>
 <div class="form-inner">
-        <form action="#" class="login">
+        <form class="login">
           <div class="field">
             <input type="text" placeholder="Username" id="logUsername" required>
           </div>
@@ -35,20 +35,21 @@ Signup Form</div>
             <input type="password" placeholder="Password" id="logPass" required>
           </div>
           <div class="field">
-            <input type="password" placeholder="First Name" id="firstName" required>
+            <input type="text" placeholder="First Name" id="firstNameReg" required>
           </div>
           <div class="field">
-            <input type="password" placeholder="Last Name" id="lastName" required>
+            <input type="text" placeholder="Last Name" id="lastNameReg" required>
           </div>
 <div class="pass-link">
 
 <div class="field btn">
-            <div class="btn-layer">
-</div>
-<input type="submit" value="Register" onclick="doReg();"> 
+            <!-- <div class="btn-layer">
+</div> -->
+<button value="Register" onclick="doReg();"> Register </button>
           </div>
+          <span id="regAddResult"></span>
 <div class="signup-link">
- <a href="LogIn.html">Back to Log In Page</a></div>
+ <a href="index.html">Back to Log In Page</a></div>
 </form>
 
 </div>

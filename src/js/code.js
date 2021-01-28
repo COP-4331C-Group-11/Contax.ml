@@ -7,7 +7,7 @@ var extension = 'php';
 var userId = 0;
 var firstName = "";
 var lastName = "";
-var phoneNumber =0;
+var phoneNumber = 0;
 
 //this is going to capture the log in information
 function doLogin()
@@ -59,18 +59,17 @@ function doLogin()
   //function for registration json package 
   function doReg()
   {
-    var userId = 0;
-    var firstName = "";
-    var lastName = "";
 
     // we also have a registration section, create jason package 
-    var registerLog = document.getElementById("regUsername").value;
-    var registerLog = document.getElementById("regPass").value; 
+    var registerUser = document.getElementById("logUsername").value;
+    var registerPass = document.getElementById("logPass").value; 
+    var registerfName = document.getElementById("firstNameReg").value; 
+    var registerlName = document.getElementById("lastNameReg").value;
     
     // creating the jason package for the registration 
     // this is the jason packaging part 
-    var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
-    var url = urlBase + '/Login.' + extension;
+    var jsonPayload = '{"login" : "' + registerUser + '", "password" : "' + registerPass + '", "firstName" : "' + registerfName + '", "lastName" : "' + registerlName + '"}';
+    var url = urlBase + '/signup.' + extension;
 
     // this is where the package will check matching 
     var xhr = new XMLHttpRequest();
@@ -78,30 +77,23 @@ function doLogin()
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try
     {
-      hr.send(jsonPayload);
-      
-      var jsonObject = JSON.parse( xhr.responseText );
-      
-      userId = jsonObject.id;
-      
-      if( userId < 1 )
+      xhr.onreadystatechange = function() 
       {
-        // this is the username does not match 
-        // go back into html and create a span that tell if the result is // sucessful or not 
-        document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-        return;
-      }
-      // this is the registration information that is needed
-      firstName = jsonObject.firstName;
-      lastName = jsonObject.lastName;
-      saveCookie();
-    
-      window.location.href = "data.html";
+        if (this.readyState == 4 && this.status == 200) 
+        {
+          window.location.href = "index.html";
+          document.getElementById("regAddResult").innerHTML = "Registration Successful";
+        }
+      };
+      xhr.send(jsonPayload);
     }
     catch(err)
     {
-      document.getElementById("loginResult").innerHTML = err.message;
+      document.getElementById("regAddResult").innerHTML = err.message;
     }
+    
+    
+
 }
 
 // recalling information

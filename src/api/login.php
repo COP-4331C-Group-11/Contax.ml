@@ -42,12 +42,7 @@ $inData = getRequestInfo();
 $id = 0;
 $firstName = "";
 $lastName = "";
-$server = "mariadb-server";
-$dbUsername = "root";
-$dbPassword = "password";
-$dbName = "Contax";
-
-$conn = mysqli_connect($server, $dbUsername, $dbPassword, $dbName);
+require_once 'database.php';
 
 if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
