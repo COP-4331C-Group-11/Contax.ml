@@ -55,31 +55,30 @@ function searchByString($table, $searchStr) {
 }
 
 function returnWithTable($table) {
-  $json = "{\"table\": [ ";
+  // Creates empty object
+  $json = new \stdClass();
+  $json->table = array();
 
   foreach ($table as $row) {
-    $json .= "{";
-    foreach ($row as $key => $value) {
-      if (!is_numeric($value))
-        $json .= "\"".$key."\":\"".$value."\",";
-      else
-        $json .= "\"".$key."\":".$value.",";
-    }
-    $json = substr($json, 0, -1);
-    $json .= "},";
+    $jsonRow = new \stdClass();
+    foreach ($row as $key => $value)
+      $jsonRow->$key = $value;
+    
+    array_push($json->table, $jsonRow);
   }
-  $json = substr($json, 0, -1);
-  $json .= "]";
 
   // Add empty error
-  $json .= ",\"error\": \"\"}";
+  $json->error = "";
 
+  // Specify response type
   header('Content-type: application/json');
-	echo $json;
+	echo json_encode($json);
 }
 
 function returnWithError($err) {
-  $json = "{\"error\":\"".$err."\"}";
+  // Creates empty object
+  $json = new \stdClass();
+  $json->error = $err;
   header('Content-type: application/json');
   echo $json;
   exit();

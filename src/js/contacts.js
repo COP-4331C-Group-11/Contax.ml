@@ -1,5 +1,3 @@
-const apiUrl="http://localhost:8080/api/search.php";
-
 // Event Listeners
 document.getElementById("contact-search")
   .addEventListener("keyup", (e) => {
@@ -12,6 +10,7 @@ updateTable("");
 
 async function getContacts(searchStr) {
   // Wait for response
+  const apiUrl="http://localhost:8080/api/search.php";
   const response = await fetch(apiUrl, {
     method: "POST",
     body: JSON.stringify({
@@ -21,7 +20,7 @@ async function getContacts(searchStr) {
   });
 
   // Convert response to string
-  // Note: response.text() gives back a js object
+  // Note: response.text() gives back a string
   const obj = await response.json();
   
   return obj.table;
@@ -48,4 +47,15 @@ async function updateTable(searchStr) {
   const contactTable = await getContacts(searchStr);
   const html = tableToHTML(contactTable);
   document.getElementById("contact-table").innerHTML = html;
+}
+
+async function deleteContact(phone) {
+  const apiUrl="http://localhost:8080/api/deleteContact.php";
+  const response = await fetch(apiUrl, {
+    method: "POST",
+    body: JSON.stringify({
+      userId: 1,
+      phone: phone
+    })
+  });
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb-server
--- Generation Time: Jan 25, 2021 at 09:05 AM
+-- Generation Time: Jan 29, 2021 at 05:59 AM
 -- Server version: 10.1.48-MariaDB-1~bionic
 -- PHP Version: 7.4.1
 
@@ -30,6 +30,7 @@ USE `Contax`;
 -- Table structure for table `contacts`
 --
 
+DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE `contacts` (
   `id` int(12) NOT NULL,
   `userId` int(12) NOT NULL,
@@ -55,6 +56,7 @@ INSERT INTO `contacts` (`id`, `userId`, `firstName`, `lastName`, `phone`, `email
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) NOT NULL,
   `firstName` varchar(128) NOT NULL,
@@ -104,16 +106,6 @@ ALTER TABLE `contacts`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `contacts`
---
-ALTER TABLE `contacts`
-  ADD CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `contacts` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
