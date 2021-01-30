@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <script type="text/javascript" src="js/code.js"></script>
+  <!--<script type="text/javascript" src="js/contacts.js"></script>-->
   <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/contacts.css">
 <title>Add Contacts</title>
-<form id="form" role="search">
-  <input type="search" id="query" name="q"
-   placeholder="Search..."
-   aria-label="Search through site content">
-  <button>Search</button>
 </form>
 </head>
 <body>
@@ -33,26 +29,15 @@
       </tr>
     </table>
   </form>
-  <table class="content-table" height= >
-    
-      <p> <font size="6" color="white" </font>Contact List</p>
-    <thead>
-      <tr>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>ID</th>
-        <th>Phone</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Doe</td>
-        <td>John</td>
-        <td>88,110</td>
-        <td>407-xxx-xxx</td>
-      </tr>
-    </tbody>
-  </table>
+
+  <input type="textInput" name="search" id="contact-search" placeholder="Search...">
+  <button id="search-btn">Search</button>
+  <center>
+  <div id="contact-table">
+    <!-- This gets auto-filled -->
+  </div>
+  </center>
+  <script src="js/contacts.js"></script>
   
 </body>
 </html>
