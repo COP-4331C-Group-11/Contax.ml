@@ -4,50 +4,43 @@
 
   <link rel="stylesheet" href="css/contactPage.css">
   
+    
 <title>Add Contacts</title>
 </form>
 </head>
 <body>
-    <form class="example" action=>
-    <input type="textInput" name="search" id="contact-search" placeholder="Search for Contacts..." >
-  <button id="search-btn">Search</button>
-    </form>
-  <!--this is going to be for the add to contacts, we needs two seperate tables to do this-->
-    <div class="container">
-      
-  <center>  
-    <div class="wrapper">  
-        
-  <form class = "form"> 
-    
-    <table class="Add-list">
-      <th>Add to contact list</th>
-      <tr>
-        <td>First Name:</td>
-        <td><input type="text" name="First Name"</td>
-      </tr>
-      <tr>
-        <td>Last Name:</td>
-        <td><input type="text" name="Last Name"</td>
-            
-      </tr>
-      <td>Phone Number:</td>
-        <td><input type="text" name="Phone Number"</td>
-      </tr>
-      <td></td>
-        <td><input type="submit" id=add name="Phone Number"</td>
-      </tr>
-    </table>
-  </form>
-    </div>
 
-  
-  <div id="contact-table">
-    <!-- This gets auto-filled -->
-  </div>
-  </center>
+  <div class = "container">
+    <header class="col-md-offset-1 col-md-10">
+      <h1>
+        My Contact List
+      </h1>
+      <small>
+        Keep track of your contacts here
+      </small>
+            
+      <!--White underline-->
+      <hr>   
+       <!--Let's input our forms here , one for adding contacts one for editing contacts-->
+       <section class="section-1">
+        <div class ="form-container">
+          <!--This is for the first form of add contact-->
+          
+          
+          <form>
+            <h1>Add to Contacts</h1>
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="Last Name">
+            <input type="text" placeholder="Phone Number">
+            
+          </form>
+        </div>
+       </section>
+       
     </div>
+    
   <script src="js/contacts.js"></script>
   
 </body>
 </html>
+

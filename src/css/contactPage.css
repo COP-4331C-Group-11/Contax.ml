@@ -5,7 +5,8 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-html,body{
+html
+{
   display: grid;
   height: 100%;
   width: 100%;
@@ -13,65 +14,49 @@ html,body{
   background: url("../img/shapes.png")
 }
 
-.container{
-background:#fff;
-padding-bottom:30px;
-padding-top:300px;
-padding-left: 30px;
-padding-right: 400px;
-border-radius: 20px;
-background: rgba(255, 255, 255, 0.877);
-}
-.form{
-  padding-bottom:20px;
-  padding-top:px;
-
-}
-.wrapper
+.contact-builder
 {
-background:#fff;
-padding-bottom:90px;
-border: 200px;
-padding-top:90px;
-padding-left: 0px;
-padding-right: 0px;
-border-radius: 15px;
-background: #e6c319;  
+  background:#fff;
+}
+.container
+{
+  border-radius: 20px;
+  background:rgba(255, 255, 255, 0.863);
+  padding-bottom:200px;
+  padding-top:20px;
+  padding-left: 300px;
+  padding-right: 300px;
+}
+.form-container
+{
+  border-radius: 20px;
+  background: #eeca00;
+  padding-bottom:30px;
+  padding-top:20px;
+  padding-left: px;
+  padding-right: 0px;
+  position: relative;;
+  top:40px;
+  right:250px;
+}
+form
+{
+  margin:20px auto;
+  width: 320px;
+  color:rgb(0, 7, 7);
+  padding-left: 30px;
+}
+input{
+ 
+  padding-left: 40px;
+  font-size:inherit;
+
+}
+input[type="text"]
+{
+  display: block;
+  margin-bottom: 20px;
+  width:80%;
+  border:2px orangered;
 }
 
-/*
-This is the style for the button
-*/
-form.example input[type=textInput] {
-    padding-left: 100px;
-    border-radius: 10px;
-    padding: 20px;
-    font-size: 17px;
-    border: 1px solid grey;
-    float: center;
-    width: 100%;
-    background: #f1f1f1;
-}
-
-/* Style the submit button */
-form.example button {
-  float: left;
-  width: 40%;
-  padding: 10px;
-  background: #e6c319
-  font-size: 18px;
-  border: 1px solid grey;
-  border-left: none; /* Prevent double borders */
-  cursor: pointer;
-}
-
-form.example button:hover {
-  background: #0b7dda;
-}
-
-/* Clear floats */
-form.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
