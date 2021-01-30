@@ -23,7 +23,7 @@ html
   border-radius: 20px;
   background:rgba(255, 255, 255, 0.863);
   padding-bottom:200px;
-  padding-top:20px;
+  padding-top:30px;
   padding-left: 300px;
   padding-right: 300px;
 }
@@ -32,12 +32,12 @@ html
   border-radius: 20px;
   background: #eeca00;
   padding-bottom:30px;
-  padding-top:20px;
+  padding-top:30px;
   padding-left: px;
   padding-right: 0px;
   position: relative;;
-  top:40px;
-  right:250px;
+  top:60px;
+  right:285px;
 }
 form
 {
@@ -60,3 +60,93 @@ input[type="text"]
   border:2px orangered;
 }
 
+.btn-1
+{
+  background-color: #0745b8; 
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 30px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 20%;
+  height: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+.btn-2
+{
+  background-color: #ad1818; 
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 30px;
+  border-radius: 10px;
+  position: absolute;
+  text-align: center;
+  top: 600px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.btn-3
+{
+  background-color: #ad1818; 
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 30px;
+  border-radius: 10px;
+  position: absolute;
+  text-align: center;
+  top: 600px;
+  margin-left: -200px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#contact-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#contact-table table {
+  border-spacing: 0;
+}
+
+#contact-table td, #contact-table th {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+#contact-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#contact-table tr:hover {background-color: #ddd;}
+
+#contact-table th {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
