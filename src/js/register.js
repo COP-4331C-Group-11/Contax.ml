@@ -1,4 +1,4 @@
-var urlBase = 'api';
+/*var urlBase = 'api';
 // do not know our URL yet 
 var extension = 'php';
 // so we have acess to the php files
@@ -43,3 +43,31 @@ function doReg()
     document.getElementById("regAddResult").innerHTML = err.message;
   }
 }
+*/
+
+
+/* When the button is clicked add the data to storage */
+document.getElementById('button-reg').addEventListener('click',addToStorage);
+document.getElementById('see - local sotage').addEventListener('click',viewStorage);
+
+function addToStorage()
+{
+    /* logs the information in the username alongside number of times is clicked*/
+
+    // these are all the acess to text fields for regsitration form
+    let tempUser = document.getElementById('logUsername').value;
+    let tempPass = document.getElementById('logPass').value;
+    let tempFirst = document.getElementById('firstNameReg').value;
+    let tempLast = document.getElementById('lastNameReg').value;
+    /*Creating an object for this*/
+    let myObject = JSON.stringify({"username":tempUser,"pass":tempPass,"First Name":tempFirst,"Last Name":tempLast});
+    localStorage.setItem('tester',myObject);   
+}
+function viewStorage()
+{
+  let tempHolder = localStorage.getItem('tester');
+  console.log(JSON.parse(tempHolder));
+}
+
+
+
