@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+html,body{
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: url("../img/shapes.png")
+}
+
+.container{
+background:#fff;
+padding-bottom:20px;
+padding-top:300px;
+padding-left: 30px;
+padding-right: 400px;
+border-radius: 20px;
+background: rgba(255, 255, 255, 0.877);
+}
+.form{
+  padding-bottom:20px;
+  padding-top:px;
+
+}
+.wrapper
+{
+background:#fff;
+padding-bottom:90px;
+border: 200px;
+padding-top:90px;
+padding-left: 0px;
+padding-right: 0px;
+border-radius: 15px;
+background: #e6c319;  
+}

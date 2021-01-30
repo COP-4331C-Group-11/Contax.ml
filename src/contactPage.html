@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <!--<script type="text/javascript" src="js/contacts.js"></script>-->
-  <link rel="stylesheet" href="css/landing.css">
-  <link rel="stylesheet" href="css/contacts.css">
+
+  <link rel="stylesheet" href="css/contactPage.css">
+  
 <title>Add Contacts</title>
 </form>
 </head>
 <body>
   <!--this is going to be for the add to contacts, we needs two seperate tables to do this-->
-  <form>
+    <div class="container">
+      <input type="textInput" name="search" id="contact-search" placeholder="Search...">
+  <button id="search-btn">Search</button>
+  <center>  
+    <div class="wrapper">  
+        
+  <form class = "form"> 
     
     <table class="Add-list">
       <th>Add to contact list</th>
@@ -20,6 +26,7 @@
       <tr>
         <td>Last Name:</td>
         <td><input type="text" name="Last Name"</td>
+            
       </tr>
       <td>Phone Number:</td>
         <td><input type="text" name="Phone Number"</td>
@@ -29,14 +36,14 @@
       </tr>
     </table>
   </form>
+    </div>
 
-  <input type="textInput" name="search" id="contact-search" placeholder="Search...">
-  <button id="search-btn">Search</button>
-  <center>
+  
   <div id="contact-table">
     <!-- This gets auto-filled -->
   </div>
   </center>
+    </div>
   <script src="js/contacts.js"></script>
   
 </body>
