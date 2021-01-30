@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 html,body{
   display: grid;
   height: 100%;
@@ -9,7 +15,7 @@ html,body{
 
 .container{
 background:#fff;
-padding-bottom:20px;
+padding-bottom:30px;
 padding-top:300px;
 padding-left: 30px;
 padding-right: 400px;
@@ -31,4 +37,41 @@ padding-left: 0px;
 padding-right: 0px;
 border-radius: 15px;
 background: #e6c319;  
+}
+
+/*
+This is the style for the button
+*/
+form.example input[type=textInput] {
+    padding-left: 100px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: center;
+    width: 100%;
+    background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 40%;
+  padding: 10px;
+  background: #e6c319
+  font-size: 18px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
 }
