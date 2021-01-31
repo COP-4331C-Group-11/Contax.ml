@@ -1,4 +1,4 @@
-/*var urlBase = 'api';
+/*
 // do not know our URL yet 
 var extension = 'php';
 // so we have acess to the php files
@@ -45,10 +45,14 @@ function doReg()
 }
 */
 
-
+// JSON is the same format as Javascript object literal 
 /* When the button is clicked add the data to storage */
 document.getElementById('button-reg').addEventListener('click',addToStorage);
 document.getElementById('see - local sotage').addEventListener('click',viewStorage);
+/* Holding storage content, page loads and people ocntains content from tester*/
+/*const people = JSON.parse(localStorage.getItem('tester'));
+console.log(people);
+*/
 
 function addToStorage()
 {
@@ -68,6 +72,34 @@ function viewStorage()
   let tempHolder = localStorage.getItem('tester');
   console.log(JSON.parse(tempHolder));
 }
+try
+{
+const xhr = new XMLHttpRequest();
 
+// listen for `load` event
+xhr.onload = () => {
 
+    // print JSON response
+    if (xhr.status >= 200 && xhr.status < 300) {
+        // parse JSON
+        const response = JSON.parse(xhr.responseText);
+        console.log(response);
+    }
+};
+// initalize the json package
+const json = JSON.stringify(tempHolder);
 
+// open request
+xhr.open('POST', "api/signup.php");
+
+// set Content-Type header
+xhr.setRequestHeader('Content-Type', 'application/json');
+
+// send rquest with JSON payload
+xhr.send(JSON.stringify(json));
+}
+catch(err)
+{
+  document.getElementById("regAddResult").innerHTML = err.message;
+
+}
