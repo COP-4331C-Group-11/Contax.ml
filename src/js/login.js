@@ -1,25 +1,21 @@
 var urlBase = 'api';
 // do not know our URL yet 
-var extension = 'php';
+var extension = 'login.php';
 // so we have acess to the php files
-
-
 var userId = 0;
 var firstName = "";
 var lastName = "";
 var phoneNumber = 0;
 
-function doLogin()
-{
   //now get the log in and password information from the id status
-
-  var login = document.getElementById("loginName").value;
-  var password = document.getElementById("loginPassword").value;
+  var login = document.getElementById("logUsername").value;
+  var password = document.getElementById("logPass").value;
 
   // creating the json package for the registration 
   document.getElementById("loginResult").innerHTML = "";
 
   // this is the json packaging part 
+  // captures the values from the input fields and converts them to json file
   var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
   var url = urlBase + '/Login.' + extension;
 
@@ -53,4 +49,3 @@ function doLogin()
   {
     document.getElementById("loginResult").innerHTML = err.message;
   }
-}
