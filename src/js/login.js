@@ -1,51 +1,48 @@
-var urlBase = 'api';
-// do not know our URL yet 
-var extension = 'login.php';
-// so we have acess to the php files
-var userId = 0;
-var firstName = "";
-var lastName = "";
-var phoneNumber = 0;
 
-  //now get the log in and password information from the id status
-  var login = document.getElementById("logUsername").value;
-  var password = document.getElementById("logPass").value;
-
-  // creating the json package for the registration 
-  document.getElementById("loginResult").innerHTML = "";
-
-  // this is the json packaging part 
-  // captures the values from the input fields and converts them to json file
-  var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
-  var url = urlBase + '/Login.' + extension;
-
-  // this is where the package will check matching 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", url, false);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  try
+  // start by getting a button that when clicked executes 
+  document.getElementById('logbutton').addEventListener('click',doLogin);
+  function doLogin()
   {
-    xhr.send(jsonPayload);
-    
-    var jsonObject = JSON.parse( xhr.responseText );
-    
-    userId = jsonObject.id;
-    
-    if( userId < 1 )
+    //Acess the text fields
+    let tempUser = document.getElementById('logUsername').value;
+    let tempPass = document.getElementById('logPass').value;
+
+    // creating the json objects
+    let myObject = JSON.stringify({"username":tempUser,"pass":tempPass});
+    // ********************************************************************
+
+    localStorage.setItem('tester',myObject);   
+    let tempHolder = localStorage.getItem('tester');
+    console.log(JSON.parse(tempHolder));
+
+    //******************************************************************** */
+
+    // this is the string we are parsing
+    const jsonString = JSON.stringify(tempHolder);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "api/login.php");
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
     {
-      // this is the username does not match 
-      // go back into html and create a span that tell if the result is // sucessful or not 
-      document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-      return;
+      xhr.send(jsonString);
+      
+      var jsonObject = JSON.parse( xhr.responseText );
+      
+      userId = jsonObject.id;
+      
+      if( userId < 1 )
+      {
+        // indicates that they are not matches 
+        document.getElementById("error").innerHTML = "User/Password combination incorrect";
+        
+      }
+      // go back to 
+      window.location.href = "contactPage.html";
     }
-    // this is the registration information that is needed
-    firstName = jsonObject.firstName;
-    lastName = jsonObject.lastName;
-    saveCookie();
-  
-    window.location.href = "data.html";
+    catch(err)
+    {
+      document.getElementById("error").innerHTML = err.message;
+    }
   }
-  catch(err)
-  {
-    document.getElementById("loginResult").innerHTML = err.message;
-  }
+
