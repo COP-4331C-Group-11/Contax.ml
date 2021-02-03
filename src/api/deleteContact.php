@@ -1,4 +1,18 @@
 <?php
+// Specs
+// URL: api/search.api
+// Input:
+//   Type: JSON
+//   {
+//     "userId": int,
+//     "phone": string,
+//   }
+// Output:
+//   Type: JSON
+//   {
+//     "status": string,
+//     "message": string
+//   }
 
 $json = file_get_contents('php://input');
 $data = json_decode($json);
