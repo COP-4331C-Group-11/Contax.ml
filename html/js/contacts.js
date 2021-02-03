@@ -5,8 +5,9 @@ document.getElementById("contact-search")
     updateTable(e.target.value);
   });
 
-// Script start
-updateTable("");
+function main() {
+  updateTable("");
+}
 
 async function getContacts(searchStr) {
   // Wait for response
@@ -59,3 +60,5 @@ async function deleteContact(phone) {
     })
   });
 }
+
+main();
