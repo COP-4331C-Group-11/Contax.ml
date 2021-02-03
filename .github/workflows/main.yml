@@ -33,4 +33,4 @@ jobs:
           port: 22 
           source: "html/*"
           target: "/var/www"
-          overwite: true 
+          overwrite: true 
