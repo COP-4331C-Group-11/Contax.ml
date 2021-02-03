@@ -6,6 +6,8 @@ $dbPassword = "password";
 $dbName = "Contax";
 
 // This is for the actual server
+if (isset($_ENV["DB_HOST"]))
+  $server = $_ENV["DB_HOST"];
 if (isset($_ENV["DB_PASSWORD"]))
   $dbPassword = $_ENV["DB_PASSWORD"];
 
