@@ -67,7 +67,7 @@ function addToStorage()
     console.log(JSON.parse(tempHolder));
   
     // Sending json files to the PHP file
-    const jsonString = JSON.stringify(tempHolder);
+    const jsonString = myObject;
     // making the request 
     const xhr = new XMLHttpRequest();
     // prepares a HTTP requesto to be

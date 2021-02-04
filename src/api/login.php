@@ -43,7 +43,7 @@ $id = 0;
 $firstName = "";
 $lastName = "";
 require_once 'database.php';
-$sql = "SELECT id,firstName,lastName FROM users where username='" . $inData["username"] . "' and password='" . $inData["pass"] . "'";
+$sql = "SELECT id,firstName,lastName FROM users where username='" . $inData["login"] . "' and password='" . $inData["password"] . "'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0)
 {

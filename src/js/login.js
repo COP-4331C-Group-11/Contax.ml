@@ -57,25 +57,18 @@ function doReg()
     let tempUser = document.getElementById("logUsername").value;
     let tempPass = document.getElementById("logPass").value;
     // creating the json objects
-    let myObject = JSON.stringify({"username":tempUser,"pass":tempPass});
-
+    let myObject = '{"login" : "' + tempUser + '", "password" : "' + tempPass + '"}';
 
     localStorage.setItem('tester',myObject);   
     let tempHolder = localStorage.getItem('tester');
     console.log(JSON.parse(tempHolder));
-
-    
-
-    // this is the string we are parsing
-    const jsonString = JSON.parse(tempHolder);
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "api/Login.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try
     {
-      xhr.send(jsonString);
-      console.log(xhr.responseText);
+      xhr.send(myObject);
       var jsonObject = JSON.parse( xhr.responseText );
       userId = jsonObject.id;
       
@@ -86,7 +79,7 @@ function doReg()
           
       }
       // go back to 
-      window.location.href = "contactPage.html";
+      document.location.href = "contactPage.html";
     }
     catch(err)
     {
