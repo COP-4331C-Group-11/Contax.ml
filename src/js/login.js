@@ -54,9 +54,8 @@ function doReg()
   function doLogin()
   {
     //Acess the text fields
-    let tempUser = document.getElementById('logUsername').value;
-    let tempPass = document.getElementById('logPass').value;
-
+    let tempUser = document.getElementById("logUsername").value;
+    let tempPass = document.getElementById("logPass").value;
     // creating the json objects
     let myObject = JSON.stringify({"username":tempUser,"pass":tempPass});
 
@@ -68,30 +67,29 @@ function doReg()
     
 
     // this is the string we are parsing
-    const jsonString = JSON.stringify(tempHolder);
+    const jsonString = JSON.parse(tempHolder);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "api/login.php");
+    xhr.open("POST", "api/Login.php", false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try
     {
       xhr.send(jsonString);
-      
+      console.log(xhr.responseText);
       var jsonObject = JSON.parse( xhr.responseText );
-      
       userId = jsonObject.id;
       
       if( userId < 1 )
       {
         // indicates that they are not matches 
-        document.getElementById("error").innerHTML = "User/Password combination incorrect";
-        
+        document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+          
       }
       // go back to 
       window.location.href = "contactPage.html";
     }
     catch(err)
     {
-      document.getElementById("error").innerHTML = err.message;
+      document.getElementById("loginResult").innerHTML = err.message;
     }
   }

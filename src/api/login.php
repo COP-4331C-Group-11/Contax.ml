@@ -43,29 +43,23 @@ $id = 0;
 $firstName = "";
 $lastName = "";
 require_once 'database.php';
-
-if (!$conn) {
-	die("Connection failed: " . mysqli_connect_error());
+$sql = "SELECT id,firstName,lastName FROM users where username='" . $inData["username"] . "' and password='" . $inData["pass"] . "'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0)
+{
+	$row = $result->fetch_assoc();
+	$firstName = $row["firstName"];
+	$lastName = $row["lastName"];
+	$id = $row["id"];
+	
+	returnWithInfo($firstName, $lastName, $id );
 }
 else
 {
-	$sql = "SELECT id,firstName,lastName FROM users where username='" . $inData["login"] . "' and password='" . $inData["password"] . "'";
-	$result = $conn->query($sql);
-	if ($result->num_rows > 0)
-	{
-		$row = $result->fetch_assoc();
-		$firstName = $row["firstName"];
-		$lastName = $row["lastName"];
-		$id = $row["id"];
-		
-		returnWithInfo($firstName, $lastName, $id );
-	}
-	else
-	{
-		returnWithError( "No Records Found" );
-	}
-	$conn->close();
+	returnWithError( "No Records Found" );
 }
+$conn->close();
+
 
 function getRequestInfo()
 {
@@ -86,6 +80,6 @@ function returnWithError( $err )
 
 function returnWithInfo( $firstName, $lastName, $id )
 {
-	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+	$retValue = '{"id":"'. $id .'","firstName":"'. $firstName .'","lastName":"'. $lastName .'"}';
 	sendResultInfoAsJson( $retValue );
 }

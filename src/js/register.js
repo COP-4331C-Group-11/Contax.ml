@@ -71,7 +71,7 @@ function addToStorage()
     // making the request 
     const xhr = new XMLHttpRequest();
     // prepares a HTTP requesto to be
-    xhr.open("POST","http://localhost:8080/api/login.php");
+    xhr.open("POST","http://localhost:8080/api/signup.php");
     // content-type header
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     // send request with JSON payload
