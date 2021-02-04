@@ -1,5 +1,45 @@
+// Form data can be extracted at the same time.
 
-// JSON is the same format as Javascript object literal 
+/*
+      // Event Listeners
+      document.getElementById("formElement")
+      .addEventListener("onsubmit", (e) => {
+        console.log(e);
+        updateTable(e.target.value);
+      });
+
+    // when the form is sumbmit the data will be extracted 
+    async function doReg()
+    {
+      e.preventDefault();
+      var form = document.querySelector("#login");
+        // getting the data from the forms 
+        data = {
+          Username: form.querySelector('input[name="Username"]').value,
+          Password : form.querySelector('input[name="Password"]').value,
+          firstName : form.querySelector('input[name="firstName"]').value,
+          lastname : form.querySelector('input[name="lastName"]').value,
+          
+        }
+        console.log(data);
+
+        let response = await fetch('http://localhost:8080/api/login.php', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // converting data into JSON package
+                body: JSON.stringify(data),
+        })
+        //read response body as text
+        let text = await response.text(); 
+        // send back information into this part of the HTML
+        document.querySelector("#decoded").innerHTML = text;
+    }
+
+    */
+
+    // JSON is the same format as Javascript object literal 
 /* When the button is clicked add the data to storage */
 document.getElementById('button-reg').addEventListener('click',addToStorage);
 // the view storage button is just allowing us to print to console to 
@@ -23,7 +63,19 @@ function addToStorage()
     let myObject = JSON.stringify({"username":tempUser,"pass":tempPass,"First Name":tempFirst,"Last Name":tempLast});
     localStorage.setItem('tester',myObject);   
     
-    
+    let tempHolder = localStorage.getItem('tester');
+    console.log(JSON.parse(tempHolder));
+  
+    // Sending json files to the PHP file
+    const jsonString = JSON.stringify(tempHolder);
+    // making the request 
+    const xhr = new XMLHttpRequest();
+    // prepares a HTTP requesto to be
+    xhr.open("POST","http://localhost:8080/api/login.php");
+    // content-type header
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    // send request with JSON payload
+    xhr.send(jsonString);
 
 }
 function viewStorage()
@@ -36,11 +88,9 @@ function viewStorage()
   // making the request 
   const xhr = new XMLHttpRequest();
   // prepares a HTTP requesto to be
-  xhr.open("POST","api/signup.php");
+  xhr.open("POST","http://localhost:8080/api/login.php");
   // content-type header
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   // send request with JSON payload
   xhr.send(jsonString);
-
 }
-
