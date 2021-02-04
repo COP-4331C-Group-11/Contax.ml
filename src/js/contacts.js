@@ -5,13 +5,12 @@ document.getElementById("contact-search")
     updateTable(e.target.value);
   });
 
-function main() {
-  updateTable("");
-}
+// Script start
+updateTable("");
 
 async function getContacts(searchStr) {
   // Wait for response
-  const apiUrl="api/search.php";
+  const apiUrl="http://localhost:8080/api/search.php";
   const response = await fetch(apiUrl, {
     method: "POST",
     body: JSON.stringify({
@@ -51,7 +50,7 @@ async function updateTable(searchStr) {
 }
 
 async function deleteContact(phone) {
-  const apiUrl="api/deleteContact.php";
+  const apiUrl="http://localhost:8080/api/deleteContact.php";
   const response = await fetch(apiUrl, {
     method: "POST",
     body: JSON.stringify({
@@ -60,5 +59,3 @@ async function deleteContact(phone) {
     })
   });
 }
-
-main();

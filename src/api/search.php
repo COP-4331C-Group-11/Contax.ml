@@ -1,25 +1,4 @@
 <?php
-// Specs
-// URL: api/search.api
-// Input:
-//   Type: JSON
-//   {
-//     "userId": int,
-//     "searchStr": string,
-//   }
-// Output:
-//   Type: JSON
-//   {
-//     "table": [
-//       "id": int,
-//       "userId": int,
-//       "firstName": string,
-//       "lastName": string,
-//       "phone": string,
-//       "email": string,
-//       "dateCreated": string
-//     ]
-//   }
 
 $json = file_get_contents('php://input');
 $data = json_decode($json);
