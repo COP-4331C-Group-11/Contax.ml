@@ -9,7 +9,7 @@ function addContact()
 let tempFristName = document.getElementById('firstName').value;
 let tempLastName = document.getElementById('lastName').value;
 let tempPhoneNumber = document.getElementById('phoneNumber').value;
-
+// add userId-> to json objects , email field , date created -->(contact added)
 //creating the json object 
 let myObject = JSON.stringify({"First Name":tempFristName,"tempLastName":tempLastName,"Phone Number":tempPhoneNumber});
 localStorage.setItem('tester',myObject);  
