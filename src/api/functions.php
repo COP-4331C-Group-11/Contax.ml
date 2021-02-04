@@ -1,6 +1,5 @@
 <?php
 
-/* --- Sign-up Functions --- */
 function emptyInputSignup($username, $password, $password2) {
     $result;
 
@@ -66,6 +65,7 @@ function createUser($conn, $username, $password) {
     mysqli_stmt_close($stmt);
     header("location : ../signup.php?error=none");
     exit();
+<<<<<<< HEAD
 }
 /* --- Sign-up Functions --- */
 
@@ -184,3 +184,6 @@ function createContact($conn,$userId,$fname,$lname,$phonenum,$email,$date) {
     returnMessage("success","");
 }
 /* --- Add Contact Functions --- */
+=======
+}
+>>>>>>> 5c59292b77d0d5a0a43c11f09228e0f5d54d399d
