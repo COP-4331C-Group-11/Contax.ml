@@ -54,8 +54,8 @@ function doReg()
   function doLogin()
   {
     //Acess the text fields
-    let tempUser = document.getElementById('logUsername').value;
-    let tempPass = document.getElementById('logPass').value;
+    let tempUser = document.getElementById('loginName').value;
+    let tempPass = document.getElementById('loginPassword').value;
 
     // creating the json objects
     let myObject = JSON.stringify({"username":tempUser,"pass":tempPass});
