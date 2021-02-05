@@ -15,9 +15,15 @@ It's a contact manager.
 
 *Note: You need to add your first and last initial followed by your new feature*
 
+### Save local changes before switching branches
+`git stash`
+
 ### Switch to a branch
 `git checkout ps/new-feature`
 `git checkout main`
+
+### Add local changes to new branch
+`git stash pop`
 
 ### Add changes
 `git add .`
