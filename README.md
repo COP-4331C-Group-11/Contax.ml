@@ -8,6 +8,30 @@ It's a contact manager.
 
 2. Clone the repository onto your system. You can use this command `git clone https://github.com/COP-4331C-Group-11/SmallGroup11.git`
 
+# How to use GIT
+
+### Make a branch
+`git branch ps/new-feature`
+
+*Note: You need to add your first and last initial followed by your new feature*
+
+### Save local changes before switching branches
+`git stash`
+
+### Switch to a branch
+`git checkout ps/new-feature`
+`git checkout main`
+
+### Add local changes to new branch
+`git stash pop`
+
+### Add changes
+`git add .`
+`git commit -m "Changed stuff"`
+
+### Push changes to GitHub
+`git push -u origin ps/new-feature`
+
 # How to Run
 
 1. You'll need is Docker. You can visit https://docs.docker.com/get-docker/ to find out how to install it.
