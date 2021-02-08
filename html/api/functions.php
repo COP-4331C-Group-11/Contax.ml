@@ -65,7 +65,11 @@ function createUser($conn, $username, $password) {
     mysqli_stmt_close($stmt);
     header("location : ../signup.php?error=none");
     exit();
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+
+>>>>>>> Stashed changes
 }
 /* --- Sign-up Functions --- */
 
