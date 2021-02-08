@@ -53,6 +53,7 @@ function doReg()
 
   function doLogin()
   {
+    userId = 0;
     //Acess the text fields
     let tempUser = document.getElementById('logUsername').value;
     let tempPass = document.getElementById('logPass').value;
