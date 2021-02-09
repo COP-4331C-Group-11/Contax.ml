@@ -1,6 +1,5 @@
 <?php
 
-/* --- Sign-up Functions --- */
 function emptyInputSignup($username, $password, $password2) {
     $result;
 
@@ -136,7 +135,7 @@ function validEmail($email)
 {
     $pattern1 = "/^([[:alnum:]]+)@([[:alnum:]])+.([[:alnum:]])+$/i";
 
-    if(preg_match($pattern1, $phonenum) == 1)
+    if(preg_match($pattern1, $email) == 1)
         return true;
     else    
         return false;
@@ -144,6 +143,7 @@ function validEmail($email)
 
 function validPhone($phonenum)
 {
+    #5582345, 5615582345, 561-558-2345,
     $pattern1 = "/^(([0-9]{3})?[0-9]{7}$)/";
     $pattern2 = "/^(([0-9]{3}-)?[0-9]{3}-[0-9]{4}$)/";
 
@@ -167,11 +167,11 @@ function sanitizePhone($phonenum)
 }
 
 function createContact($conn,$userId,$fname,$lname,$phonenum,$email,$date) {
-    $sql = "INSERT INTO contacts (userid, firstName, last, phone, email, dateCreated) VALUES (?, ?, ?, ?, ?, ?) ;";
+    $sql = "INSERT INTO contacts (userid, firstName, lastName, phone, email, dateCreated) VALUES (?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        returnMessage("error", "Error: Could not prepare contact.");
+        returnMessage("error", "Error: ".mysqli_error($conn));
         exit();
     }
 
