@@ -1,50 +1,45 @@
 // adding contacts to database 
 
 // Convert to json on 
-document.getElementById('add-contact').addEventListener('click',addContact);
 
-function addContact()
+
+// get the form 
+var form = document.getElementById('contact')
+// wait untill form is submitted
+form.addEventListener('submit',function(e)
 {
-//acess the text feilds 
-let tempFristName = document.getElementById('firstName').value;
-let tempLastName = document.getElementById('lastName').value;
-let tempPhoneNumber = document.getElementById('phoneNumber').value;
-// add userId-> to json objects , email field , date created -->(contact added)
-//creating the json object 
-let myObject = JSON.stringify({"First Name":tempFristName,"tempLastName":tempLastName,"Phone Number":tempPhoneNumber});
-localStorage.setItem('tester',myObject);  
-let tempHolder = localStorage.getItem('tester');
-console.log(JSON.parse(tempHolder));
+  // prevent auto-submission 
+  e.preventDefault()
 
-// setting to JSON
-const jsonString = JSON.stringify(tempHolder);
+  var FristName = document.getElementById('firstName').value;
+  var LastName = document.getElementById('lastName').value;
+  var PhoneNumber = document.getElementById('phoneNumber').value;
+  var Email = document.getElementById('email').value;
+  var id = document.getElementById('id').value;
+  // fetch post request
+  fetch("api/login.php",{
+    method:'POST',
+    body:JSON.stringify
+    ({
+      id : id,
+      email: Email,
+      first:FristName,
+      last:LastName,
+      phone:PhoneNumber,
+    }),
+    // adding xml headers
+    headers:{
+      "Content-type" : "application/json; charset=UTF-8",
+    },
 
-//******** This is where the XML request is happening *********/
-const xhr = new XMLHttpRequest();
-  // prepares a HTTP requesto to be
-  xhr.open("POST","api/database.php");
-  // content-type header
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-  xhr.send(jsonString); 
-  // using promise statments 
-  let promise = new Promise((resolve, reject) =>
-  {
-    // onreadystate gets calls every time readySate propertry in the request chnages  
-    xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-                // this is our sucess 
-				resolve(document.getElementById("add-results").innerHTML = "Adeed to contacts");
-            }
-            else
-            {
-                // this is our failure- not able to add to contacts
-                reject(document.getElementById("colorAddResult").innerHTML = err.message);
-            }
-		};
-        xhr.send(jsonString); 
 })
-}
+
+  //getting the promise
+    //getting the promise
+    .then(res => res.text())          
+    .then(text => console.log(text)) 
+    document.getElementById("addResult").innerHTML = "Added Contact";
+
+
+})
 

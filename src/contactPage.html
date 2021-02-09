@@ -41,14 +41,18 @@
           <!--This is for the first form of add contact-->
           
           
-          <form>
+          <form method="post" id="contact">
             <h2>Contacts</h2>
+            <input id="id" type="number" placeholder="ID" style="margin-bottom: 20px;">
+            <input id="email" type="text" placeholder="Email">
             <input id="firstName" type="text" placeholder="First Name">
             <input id="lastName" type="text" placeholder="Last Name">
             <input id="phoneNumber" type="text" placeholder="Phone Number">
+            <div id="addResult"></div>
+            
             <div class="button-container">
               <div id="add-results"></div>
-              <button id="add-contact" class="btn-1"> Add </button>
+              <button type ="submit" add-contact" class="btn-1"> Add </button>
               <button id="edit-contact" class="btn-1"> Edit</button>
               <button id="delete-contact" class="btn-1"> Delete</button>
             </div>
@@ -60,7 +64,8 @@
        
     </div>
     
-  <script src="js/contacts.js"></script>
+ 
+  <!--  <script src="js/contacts.js"></script>-->
   <script src="js/addContact.js"></script>
   
 </body>
