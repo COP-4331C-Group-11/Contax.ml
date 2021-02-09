@@ -5,7 +5,24 @@ $json = file_get_contents('php://input');
 $json = rtrim($json,"\0");
 $data = json_decode($json);
 /* 
-*   Input: {"userId": , "firstname":, "lastname":, "phonenumber": "email":, "date":}
+*   URL: api/addContact.php
+*   Input: Type JSON
+*   {
+*      "userId": int, 
+*      "firstname": string, 
+*      "lastname": string, 
+*      "phonenumber": string, 
+*      "email": string, 
+*      "date": string
+*    }
+*
+*   Output:
+*   Type: JSON
+*   {
+*       "Status": string
+*       "Message": string
+*   }
+*
 *   These are the json fields that need to be present when using the addcontact api. 
 *   The minimum inputs necessary to add are either a first or last name of the desired
 *   contact and a userId That will be provided by a cookie.
@@ -72,7 +89,6 @@ function returnMessage($status, $message)
 }
 
 /*
-*   Output: 
 *   If the addcontact api works as desired, there should be a new contact present within the database.
 *   Whether it succeeds or fails, a json object will be sent with a status and message field that will
 *   be presented as such:
