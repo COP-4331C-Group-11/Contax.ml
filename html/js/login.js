@@ -1,5 +1,6 @@
 var form = document.getElementById('loginForm')
 // wait untill form is submitted
+
 form.addEventListener('submit',function(e)
 {
   // prevent auto-submission 
@@ -25,7 +26,7 @@ form.addEventListener('submit',function(e)
   .then(res => res.text())          
   .then(text => console.log(text)) 
 
-  // redirecting after the data is sent
+  
   window.location.href = "contactPage.html";
 
 })
