@@ -1,46 +1,37 @@
 
-// JSON is the same format as Javascript object literal 
-/* When the button is clicked add the data to storage */
-document.getElementById('button-reg').addEventListener('click',addToStorage);
-// the view storage button is just allowing us to print to console to 
-// see if everything is being parsed and stored corectly
-document.getElementById('see - local sotage').addEventListener('click',viewStorage);
-/* Holding storage content, page loads and people ocntains content from tester*/
-/*const people = JSON.parse(localStorage.getItem('tester'));
-console.log(people);
-*/
-
-function addToStorage()
+var form = document.getElementById('reg')
+// wait untill form is submitted
+form.addEventListener('submit',function(e)
 {
-    /* logs the information in the username alongside number of times is clicked*/
+  // prevent auto-submission 
+  e.preventDefault()
 
-    // these are all the acess to text fields for regsitration form
-    let tempUser = document.getElementById('logUsername').value;
-    let tempPass = document.getElementById('logPass').value;
-    let tempFirst = document.getElementById('firstNameReg').value;
-    let tempLast = document.getElementById('lastNameReg').value;
-    /*Creating an object for this*/
-    let myObject = JSON.stringify({"username":tempUser,"pass":tempPass,"First Name":tempFirst,"Last Name":tempLast});
-    localStorage.setItem('tester',myObject);   
-    
-    
+  var login= document.getElementById('logUsername').value;
+  var password= document.getElementById('logPass').value;
+  var firstName = document.getElementById('firstNameReg').value;
+  var lastName = document.getElementById('lastNameReg').value;
 
-}
-function viewStorage()
-{
-  let tempHolder = localStorage.getItem('tester');
-  console.log(JSON.parse(tempHolder));
+  // fetch post request
+  fetch('api/signup.php',{
+    method:'POST',
+    body: JSON.stringify
+    ({
+      firstName : firstName,
+      lastName : lastName,
+      login : login,
+      password :password,
+      
+    }),
+    // adding xml headers
+    headers:{
+      'Content-type' : 'application/json; charset=UTF-8' ,
+    }
+})
+  //getting the promise
+  .then(res => res.text())          
+  .then(text => console.log(text)) 
 
-  // Sending json files to the PHP file
-  const jsonString = JSON.stringify(tempHolder);
-  // making the request 
-  const xhr = new XMLHttpRequest();
-  // prepares a HTTP requesto to be
-  xhr.open("POST","api/signup.php");
-  // content-type header
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  // send request with JSON payload
-  xhr.send(jsonString);
+  
+  window.location.href = "contactPage.html";
 
-}
-
+})
