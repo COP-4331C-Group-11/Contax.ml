@@ -44,14 +44,16 @@
           <!--This is for the first form of add contact-->
           
           
-          <form>
+          <form method="post" id="addContacts">
             <h2>Contacts</h2>
+            <input id="id" type="number" placeholder="ID" style ="margin-bottom: 20px;">
             <input id="firstName" type="text" placeholder="First Name">
             <input id="lastName" type="text" placeholder="Last Name">
+            <input id="email" type="text" placeholder="Email">
             <input id="phoneNumber" type="text" placeholder="Phone Number">
             <div class="button-container">
               <div id="add-results"></div>
-              <button id="add-contact" class="btn-1"> Add contact</button>
+              <button type="submit" id="add-contact" class="btn-1"> Add contact</button>
             </div>
           </form>
           

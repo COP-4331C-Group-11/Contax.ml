@@ -1,50 +1,38 @@
-// adding contacts to database 
 
-// Convert to json on 
-document.getElementById('add-contact').addEventListener('click',addContact);
-
-function addContact()
+var form = document.getElementById('reg')
+// wait untill form is submitted
+form.addEventListener('submit',function(e)
 {
-//acess the text feilds 
-let tempFristName = document.getElementById('firstName').value;
-let tempLastName = document.getElementById('lastName').value;
-let tempPhoneNumber = document.getElementById('phoneNumber').value;
+  // prevent auto-submission 
+  e.preventDefault()
 
-//creating the json object 
-let myObject = JSON.stringify({"First Name":tempFristName,"tempLastName":tempLastName,"Phone Number":tempPhoneNumber});
-localStorage.setItem('tester',myObject);  
-let tempHolder = localStorage.getItem('tester');
-console.log(JSON.parse(tempHolder));
+  var login= document.getElementById('logUsername').value;
+  var password= document.getElementById('logPass').value;
+  var firstName = document.getElementById('firstNameReg').value;
+  var lastName = document.getElementById('lastNameReg').value;
 
-// setting to JSON
-const jsonString = JSON.stringify(tempHolder);
-
-//******** This is where the XML request is happening *********/
-const xhr = new XMLHttpRequest();
-  // prepares a HTTP requesto to be
-  xhr.open("POST","api/database.php");
-  // content-type header
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-  xhr.send(jsonString); 
-  // using promise statments 
-  let promise = new Promise((resolve, reject) =>
-  {
-    // onreadystate gets calls every time readySate propertry in the request chnages  
-    xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-                // this is our sucess 
-				resolve(document.getElementById("add-results").innerHTML = "Adeed to contacts");
-            }
-            else
-            {
-                // this is our failure- not able to add to contacts
-                reject(document.getElementById("colorAddResult").innerHTML = err.message);
-            }
-		};
-        xhr.send(jsonString); 
+  // fetch post request
+  fetch('api/signup.php',{
+    method:'POST',
+    body: JSON.stringify
+    ({
+      firstName : firstName,
+      lastName : lastName,
+      login : login,
+      password :password,
+      
+    }),
+    // adding xml headers
+    headers:{
+      'Content-type' : 'application/json; charset=UTF-8' ,
+    }
 })
-}
+  //getting the promise
+  .then(res => res.text())          
+  .then(text => console.log(text)) 
+
+  
+  window.location.href = "contactPage.html";
+
+})
 
