@@ -1,26 +1,27 @@
 
-var form = document.getElementById('reg')
+var form = document.getElementById('addContacts')
 // wait untill form is submitted
 form.addEventListener('submit',function(e)
 {
   // prevent auto-submission 
   e.preventDefault()
 
-  var login= document.getElementById('logUsername').value;
-  var password= document.getElementById('logPass').value;
-  var firstName = document.getElementById('firstNameReg').value;
-  var lastName = document.getElementById('lastNameReg').value;
+  var id = document.getElementById('id').value;
+  var firstName = document.getElementById('firstName').value;
+  var lastName = document.getElementById('lastName').value;
+  var email = document.getElementById('email').value;
+  var phone = document.getElementById('phone').value;
 
   // fetch post request
-  fetch('api/signup.php',{
+  fetch('api/addcontact.php',{
     method:'POST',
     body: JSON.stringify
     ({
-      firstName : firstName,
-      lastName : lastName,
-      login : login,
-      password :password,
-      
+      userId: id,
+      firstname : firstName,
+      lastname : lastName,
+      phonenumber : phone,
+      email :email,
     }),
     // adding xml headers
     headers:{
@@ -29,10 +30,7 @@ form.addEventListener('submit',function(e)
 })
   //getting the promise
   .then(res => res.text())          
-  .then(text => console.log(text)) 
-
-  
-  window.location.href = "contactPage.html";
+  .then(text => console.log(text))  
 
 })
 
