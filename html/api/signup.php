@@ -46,7 +46,7 @@
 	
 	function returnUsernameTaken()
 	{
-		$retValue = '{"error":"taken"}';
+		$retValue = '{"error":"Invalid Username"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
