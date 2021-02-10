@@ -9,7 +9,7 @@ form.addEventListener('submit',function(e)
   var password = document.getElementById('loginPassword').value;
 
   // fetch post request
-  fetch('api/signup.php',{
+  fetch('api/login.php',{
     method:'POST',
     body: JSON.stringify
     ({
