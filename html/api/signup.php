@@ -24,7 +24,7 @@
 		else {
 			$date = date("Y/m/d");
 			$sql = "INSERT INTO users (firstName, lastName, dateFirstOn, dateLastOn, username, password) 
-				VALUES ('" . $inData["firstName"] . "', '" . $inData["lastName"] . "', '" . $date  . "', '" . date("Y/m/d")  . "', '" . $date . "', '" . $inData["password"] . "');";
+				VALUES ('" . $inData["firstName"] . "', '" . $inData["lastName"] . "', '". $date . "', '". $date . "', '" . $inData["login"] . "', '" . $inData["password"] . "');";
 			if( $result = $conn->query($sql) != TRUE )
 			{
 				returnWithError( $conn->error );
