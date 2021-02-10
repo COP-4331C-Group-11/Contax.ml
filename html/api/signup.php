@@ -1,4 +1,12 @@
 <?php
+
+// URL: api/signup.php
+// Input: Type JSON {
+// 	"firstName" : string,
+// 	"lastName" : string,
+//  "login" : string,
+//  "password" : string,
+// }
 	$inData = getRequestInfo();
 
     require_once 'database.php';
@@ -7,11 +15,20 @@
     }
 	else
 	{
-		$sql = "INSERT INTO users (firstName, lastName, dateFirstOn, dateLastOn, username, password) 
-            VALUES ('" . $inData["firstName"] . "', '" . $inData["lastName"] . "', '2020-12-12', '2020-12-13', '" . $inData["login"] . "', '" . $inData["password"] . "');";
-		if( $result = $conn->query($sql) != TRUE )
+		$sql = "SELECT id,firstName,lastName FROM users where username='" . $inData["login"] . "'";
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0)
 		{
 			returnWithError( $conn->error );
+		}
+		else {
+			$date = date("Y/m/d");
+			$sql = "INSERT INTO users (firstName, lastName, dateFirstOn, dateLastOn, username, password) 
+				VALUES ('" . $inData["firstName"] . "', '" . $inData["lastName"] . "', '". $date . "', '". $date . "', '" . $inData["login"] . "', '" . $inData["password"] . "');";
+			if( $result = $conn->query($sql) != TRUE )
+			{
+				returnWithError( $conn->error );
+			}
 		}
 		$conn->close();
 	}
