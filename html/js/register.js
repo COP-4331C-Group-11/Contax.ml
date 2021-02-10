@@ -6,20 +6,20 @@ form.addEventListener('submit',function(e)
   // prevent auto-submission 
   e.preventDefault()
 
-  var Username = document.getElementById('logUsername').value;
-  var Password= document.getElementById('logPass').value;
-  var First = document.getElementById('firstNameReg').value;
-  var Last = document.getElementById('lastNameReg').value;
+  var login= document.getElementById('logUsername').value;
+  var password= document.getElementById('logPass').value;
+  var firstName = document.getElementById('firstNameReg').value;
+  var lastName = document.getElementById('lastNameReg').value;
 
   // fetch post request
   fetch('api/signup.php',{
     method:'POST',
     body: JSON.stringify
     ({
-      username : Username,
-      password : Password,
-      first : First,
-      last : Last,
+      firstName : firstName,
+      lastName : lastName,
+      login : login,
+      password :password,
       
     }),
     // adding xml headers
@@ -31,7 +31,7 @@ form.addEventListener('submit',function(e)
   .then(res => res.text())          
   .then(text => console.log(text)) 
 
-  // redirecting after the data is sent
-  //window.location.href = "contactPage.html";
+  
+  window.location.href = "contactPage.html";
 
 })
