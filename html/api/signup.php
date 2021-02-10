@@ -19,7 +19,7 @@
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
-			returnWithError( $conn->error );
+			returnUsernameTaken();
 		}
 		else {
 			$date = date("Y/m/d");
@@ -44,6 +44,12 @@
 		echo $obj;
 	}
 	
+	function returnUsernameTaken()
+	{
+		$retValue = '{"error":"taken"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
