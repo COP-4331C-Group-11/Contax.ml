@@ -1,9 +1,8 @@
 
   // start by getting a button that when clicked executes 
-  // document.getElementById('login-btn').addEventListener('click', doLogin());
+  document.getElementById('logbutton').addEventListener('click',doLogin);
   function doLogin()
   {
-    document.getElementById("loginResult").innerHTML = "";
     //Acess the text fields
     let tempUser = document.getElementById('loginName').value;
     let tempPass = document.getElementById('loginPassword').value;
@@ -19,27 +18,31 @@
     //******************************************************************** */
 
     // this is the string we are parsing
-    var jsonPayload = '{"username" : "' + tempUser + '", "pass" : "' + tempPass + '"}';
+    const jsonString = JSON.stringify(tempHolder);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../api/login.php", false);
+    xhr.open("POST", "api/login.php");
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhr.send(jsonPayload);
-
-    var jsonObject = JSON.parse( xhr.responseText );
-    
-    userId = jsonObject.id;
-    
-    if( userId < 1 )
+    try
     {
-      // indicates that they are not matches 
-      document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-      return;
-    }
-    else {
+      xhr.send(jsonString);
+      
+      var jsonObject = JSON.parse( xhr.responseText );
+      
+      userId = jsonObject.id;
+      
+      if( userId < 1 )
+      {
+        // indicates that they are not matches 
+        document.getElementById("error").innerHTML = "User/Password combination incorrect";
+        
+      }
       // go back to 
-      window.location.href = "http://localhost:8080/contactPage.html";
-      return;
+      window.location.href = "contactPage.html";
+    }
+    catch(err)
+    {
+      document.getElementById("error").innerHTML = err.message;
     }
   }
 
