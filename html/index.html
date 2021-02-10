@@ -26,7 +26,7 @@
       <div class="form-container">
     </div>
       <div class="form-inner">
-          <form action="#" class="login">
+          <form id="loginForm" class="login" method="post">
             <div class="field">
               <input type="text" placeholder="Username" id="loginName" required>
             </div>
@@ -39,7 +39,7 @@
 
 
 <center>         
-<button class="button" id="login-btn" onclick ="doLogin();" value="Login"> Login </button>
+<input type="submit" id="login-btn" value="Login">
 </center>
             </div>
             <span id="loginResult"></span>

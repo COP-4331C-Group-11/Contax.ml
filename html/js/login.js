@@ -1,48 +1,31 @@
+var form = document.getElementById('loginForm')
+// wait untill form is submitted
+form.addEventListener('submit',function(e)
+{
+  // prevent auto-submission 
+  e.preventDefault()
 
-  // start by getting a button that when clicked executes 
-  document.getElementById('logbutton').addEventListener('click',doLogin);
-  function doLogin()
-  {
-    //Acess the text fields
-    let tempUser = document.getElementById('loginName').value;
-    let tempPass = document.getElementById('loginPassword').value;
+  var username = document.getElementById('loginName').value;
+  var password = document.getElementById('loginPassword').value;
 
-    // creating the json objects
-    let myObject = JSON.stringify({"username":tempUser,"pass":tempPass});
-    // ********************************************************************
-
-    localStorage.setItem('tester',myObject);   
-    let tempHolder = localStorage.getItem('tester');
-    console.log(JSON.parse(tempHolder));
-
-    //******************************************************************** */
-
-    // this is the string we are parsing
-    const jsonString = JSON.stringify(tempHolder);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "api/login.php");
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try
-    {
-      xhr.send(jsonString);
-      
-      var jsonObject = JSON.parse( xhr.responseText );
-      
-      userId = jsonObject.id;
-      
-      if( userId < 1 )
-      {
-        // indicates that they are not matches 
-        document.getElementById("error").innerHTML = "User/Password combination incorrect";
-        
-      }
-      // go back to 
-      window.location.href = "contactPage.html";
+  // fetch post request
+  fetch('api/login.php',{
+    method:'POST',
+    body: JSON.stringify
+    ({
+      username : username,
+      password : password,
+    }),
+    // adding xml headers
+    headers:{
+      'Content-type' : 'application/json; charset=UTF-8' ,
     }
-    catch(err)
-    {
-      document.getElementById("error").innerHTML = err.message;
-    }
-  }
+})
+  //getting the promise
+  .then(res => res.text())          
+  .then(text => console.log(text)) 
 
+  // redirecting after the data is sent
+  window.location.href = "contactPage.html";
+
+})
