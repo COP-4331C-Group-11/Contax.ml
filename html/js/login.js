@@ -8,7 +8,7 @@
     let tempPass = document.getElementById('loginPassword').value;
 
     // creating the json objects
-    let myObject = JSON.stringify({"username":tempUser,"pass":tempPass});
+    let myObject = JSON.stringify({"username":tempUser,"password":tempPass});
     // ********************************************************************
 
     localStorage.setItem('tester',myObject);   
