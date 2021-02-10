@@ -21,7 +21,7 @@ form.addEventListener('submit',function(e)
       firstname : firstName,
       lastname : lastName,
       phonenumber : phone,
-      email :email,
+      email :email
     }),
     // adding xml headers
     headers:{
@@ -31,6 +31,6 @@ form.addEventListener('submit',function(e)
   //getting the promise
   .then(res => res.text())          
   .then(text => console.log(text))  
-
+//
 })
 
