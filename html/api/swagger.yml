@@ -1,0 +1,41 @@
+host: COP4331-3.com
+basePath: /LAMPAPI
+schemes:
+  - http
+paths:
+  /api/login.php:
+    post:
+      tags:
+        - Users
+      summary: Logs into contax
+      operationId: doLogin
+      description: Logs into contax
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: loginItem
+          description: Login
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: OK
+          
+        404:
+          description: URL Not Found
+  definitions:
+    Login:
+      type: object
+      required:
+        - login
+        - password
+      properties:
+        login:
+          type: string
+          example: john
+        password:
+          type: string
+          example: string
