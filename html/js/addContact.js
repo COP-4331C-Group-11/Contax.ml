@@ -30,7 +30,8 @@ form.addEventListener('submit',function(e)
 })
   //getting the promise
   .then(res => res.text())          
-  .then(text => console.log(text))  
+  .then(text => document.getElementById('error').innerHTML = text)  
+  
 //
 })
 
