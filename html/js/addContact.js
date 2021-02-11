@@ -17,16 +17,16 @@ form.addEventListener('submit',function(e)
     method:'POST',
     body: JSON.stringify
     ({
-      userId: id,
+      userId : id,
       firstname : firstName,
       lastname : lastName,
       phonenumber : phone,
-      email :email
+      email : email,
+      date : '4/23/30'
+      
     }),
     // adding xml headers
-    headers:{
-      'Content-type' : 'application/json; charset=UTF-8' ,
-    }
+    
 })
   //getting the promise
   .then(res => res.text())          
