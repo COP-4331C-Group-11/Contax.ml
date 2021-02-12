@@ -163,7 +163,7 @@ form .field input:focus::placeholder{
   text-decoration: underline;
 }
 
-.button {
+#login-btn {
   background-color: #ffcc00; /* Yellow */
   border: none;
   color: white;
