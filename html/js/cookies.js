@@ -1,42 +1,35 @@
-function saveCookie()
+// The Cookie
+//JSON {
+//	"userId" : string,
+//	"firstname" : string,
+//	"lastname" : string,
+//	"expdate" : string,
+//}
+
+function saveCookie(firstName, lastName, userId)
 {
 	var minutes = 20;
 	var date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = JSON.stringify({
+		userId: userId,
+		firstName: firstName,
+		lastName: lastName,
+		expDate: date,
+	});
 }
 
 function readCookie()
 {
-	userId = -1;
-	var data = document.cookie;
-	var splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
-	{
-		var thisOne = splits[i].trim();
-		var tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
-		{
-			firstName = tokens[1];
-		}
-		else if( tokens[0] == "lastName" )
-		{
-			lastName = tokens[1];
-		}
-		else if( tokens[0] == "userId" )
-		{
-			userId = parseInt( tokens[1].trim() );
-		}
+
+	try {
+		return JSON.parse(document.cookie);
+
+	} catch (error) {
+		document.lolcation.href = "index.html";
+		return null;
 	}
 	
-	if( userId < 0 )
-	{
-		window.location.href = "index.html";
-	}
-	else
-	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
 }
 
 function doLogout()
