@@ -1,6 +1,6 @@
 <?php
 
-// URL: api/signup.php
+// URL: api/editContact.php
 // Input: Type JSON {
 // 	"firstName" : string,
 // 	"lastName" : string,
@@ -26,7 +26,7 @@
 		{
 			returnWithError( $conn->error );
 		}
-       
+        returnWithSuccess();
 		$conn->close();
 	}
 		
