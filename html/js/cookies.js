@@ -1,9 +1,9 @@
 // The Cookie
 //JSON {
 //	"userId" : string,
-//	"firstname" : string,
-//	"lastname" : string,
-//	"expdate" : string,
+//	"firstName" : string,
+//	"lastName" : string,
+//	"expDate" : string,
 //}
 
 function saveCookie(firstName, lastName, userId)
