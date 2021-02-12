@@ -14,7 +14,7 @@ form.addEventListener('submit',function(e)
     method:'POST',
     body: JSON.stringify
     ({
-      username : username,
+      login : username,
       password : password,
     }),
     // adding xml headers
