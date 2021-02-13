@@ -1,15 +1,18 @@
-host: COP4331-3.com
-basePath: /LAMPAPI
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Contax API
+  description: Control users and contacts
+host: contax.ml
+basePath: /api
 schemes:
   - http
 paths:
-  /api/login.php:
+  /login.php:
     post:
       tags:
         - Users
-      summary: Logs into contax
-      operationId: doLogin
-      description: Logs into contax
+      description: Logs in user
       consumes:
         - application/json
       produces:
@@ -23,19 +26,162 @@ paths:
       responses:
         200:
           description: OK
-          
+          schema:
+            $ref: '#/definitions/UserData'
         404:
           description: URL Not Found
-  definitions:
-    Login:
-      type: object
-      required:
-        - login
-        - password
-      properties:
-        login:
-          type: string
-          example: john
-        password:
-          type: string
-          example: string
+          schema:
+            $ref: '#/definitions/404Response'
+  /search.php:
+    post:
+      tags:
+        - Contacts
+      description: Returns list of users matching search string
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: searchParameters
+          description: Search parameters
+          schema:
+            $ref: '#/definitions/searchParams'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/contactTable'
+        404:
+          description: URL Not Found
+          schema:
+            $ref: '#/definitions/404Response'
+  /deleteContact.php:
+    post:
+      tags:
+        - Contacts
+      description: Deletes contact by phone number
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: deleteParameters
+          description: Delete parameters
+          schema:
+            $ref: '#/definitions/deleteParams'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/simpleResponse'
+        404:
+          description: URL Not Found
+          schema:
+            $ref: '#/definitions/404Response'
+definitions:
+  404Response:
+    type: object
+    properties:
+      status:
+        type: integer
+        example: 404
+      message:
+        type: string
+        example: Bad Request
+  simpleResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: error
+      message:
+        type: string
+        example: Invalid input
+  Login:
+    type: object
+    properties:
+      login:
+        type: string
+        example: john
+      password:
+        type: string
+        example: password123
+  UserData:
+    type: object
+    properties:
+      id:
+        type: string
+        example: '1'
+      firstName:
+        type: string
+        example: John
+      lastName:
+        type: string
+        example: Watson
+  searchParams:
+    type: object
+    properties:
+      id:
+        type: string
+        example: '1'
+      firstName:
+        type: string
+        example: John
+      lastName:
+        type: string
+        example: Watson
+      searchStr:
+        type: string
+        example: john
+  contactTable:
+    type: object
+    properties: 
+      status:
+        type: string
+        example: success
+      message:
+        type: string
+        example: 
+      table:
+        type: array
+        items:
+          type: object
+          properties: 
+            id:
+              type: integer
+              example: 1
+            userId:
+              type: integer
+              example: 1  
+            firstName:
+              type: string
+              example: John
+            lastName:
+              type: string
+              example: Watson
+            phone:
+              type: string
+              example: "4074206969"
+            email:
+              type: string
+              example: john@example.com
+            dateCreated:
+              type: string
+              example: "2021-01-06"
+  deleteParams:
+    type: object
+    properties:
+      id:
+        type: string
+        example: '1'
+      firstName:
+        type: string
+        example: John
+      lastName:
+        type: string
+        example: Watson
+      phone:
+        type: string
+        example: "4074206969"
