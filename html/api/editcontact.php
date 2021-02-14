@@ -43,13 +43,13 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"message":"' . $err . '"}';
+		$retValue = '{"status":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
     function returnWithSuccess( $yes )
 	{
-		$retValue = '{"message":"Success!"}';
+		$retValue = '{"status":"Success!"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
