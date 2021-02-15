@@ -14,6 +14,7 @@ function doLogin(e) {
 
 }
 
+// trys to login
 async function login(username, password) {
   let response = await fetch('api/login.php', {
     method: 'POST',
@@ -29,12 +30,12 @@ async function login(username, password) {
 
   if (json.error != "")
   {
+    // if failed it will return out of this function
     return;
   }
-  
+  // if successful will redirect to contact page and make a cookie with the user data
   window.location.href = "contactPage.html";
   saveCookie(json.firstname, json.lastname, json.id);
-  
 }
   
 
