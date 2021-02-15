@@ -22,11 +22,6 @@
 	else
 	{
 		$sql = "UPDATE contacts SET (firstName='". $inData["firstName"]. "', lastName='" . $inData["lastName"] ."', phone='". $inData["phone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."') WHERE id='". $inData["id"]."';";
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0)
-		{
-			returnWithError();
-		}
         returnWithSuccess();
 		$conn->close();
 	}
