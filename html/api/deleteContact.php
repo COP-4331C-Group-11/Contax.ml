@@ -17,6 +17,13 @@
 $json = file_get_contents('php://input');
 $data = json_decode($json);
 
+// Validate JSON
+if ($data == null || $data->$userId == null || $data->$phone == null)
+  returnWithError("Input invalid");
+// Validate JSON schema
+if (!property_exists($data, "userId") || !property_exists($data, "phone"))
+  returnWithError("Input invalid");
+
 $userId = $data->userId;
 $phone = $data->phone;
 
@@ -40,4 +47,14 @@ function returnMessage($status, $message) {
   $retObj->status = $status;
   $retObj->message = $message;
   echo json_encode($retObj);
+}
+
+function returnWithError($err) {
+  // Creates empty object
+  $json = new \stdClass();
+  $json->status = "error";
+  $json->message = $err;
+  header('Content-type: application/json');
+  echo json_encode($json);
+  exit();
 }
