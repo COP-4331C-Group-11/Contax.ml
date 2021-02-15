@@ -10,7 +10,8 @@
 // }
 
 // Output: Type JSON {
-// 	"status" : string // should return either error or success
+// 	"status" : string, // should return either error or success
+//	"message" : string
 // }
 	$inData = getRequestInfo();
 
@@ -43,13 +44,13 @@
 	
 	function returnWithError()
 	{
-		$retValue = '{"status":"error"}';
+		$retValue = '{"status":"error", "message" : "error"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
     function returnWithSuccess( $yes )
 	{
-		$retValue = '{"status":"success"}';
+		$retValue = '{"status":"success", "message" : ""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
