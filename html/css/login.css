@@ -15,22 +15,18 @@ html,body{
 }
 
 .hand{
-  
   top:-120px;
   position: sticky;
   margin-bottom: 0px;
   left:100px;
   z-index: 1;
+}
 
-  }
 .logo{
   left:10px;
   position: absolute;
 }
-::selection{
-  background: #fa4299;
-  color: #fff;
-}
+
 .wrapper{
   overflow: hidden;
   max-width: 390px;
@@ -39,10 +35,12 @@ html,body{
   border-radius: 20px;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.603);
 }
+
 .wrapper .title-text{
   display: flex;
   width: 200%;
 }
+
 .wrapper .title{
   width: 50%;
   font-size: 30px;
@@ -51,57 +49,10 @@ html,body{
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 
-.wrapper .slide-controls{
-  position: relative;
-  display: flex;
-  height: 50px;
-  width: 100%;
-  overflow: hidden;
-  margin: 30px 0 10px 0;
-  justify-content: space-between;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-}
-.slide-controls .slide{
-  height: 100%;
-  width: 100%;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  text-align: center;
-  line-height: 48px;
-  cursor: pointer;
-  z-index: 1;
-  transition: all 0.6s ease;
-}
-.slide-controls label.signup{
-  color: #000;
-}
-.slide-controls .slider-tab{
-  position: absolute;
-  height: 100%;
-  width: 50%;
-  left: 0;
-  z-index: 0;
-  border-radius: 5px;
-  background: -webkit-linear-gradient(right,#ca9116, #eeca00, #e2b319, #ca9116);
-  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
-}
-
-#signup:checked ~ .slider-tab{
-  left: 50%;
-}
-#signup:checked ~ label.signup{
-  color: #fff;
-  cursor: default;
-  user-select: none;
-}
-#signup:checked ~ label.login{
-  color: #000;
-}
 #login:checked ~ label.signup{
   color: #000;
 }
+
 #login:checked ~ label.login{
   cursor: default;
   user-select: none;
