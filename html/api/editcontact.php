@@ -11,7 +11,7 @@
 
 // Output: Type JSON {
 // 	"status" : string, // should return either error or success
-//	"message" : string
+//	"message" : string // empty if success, error if error
 // }
 	$inData = getRequestInfo();
 
