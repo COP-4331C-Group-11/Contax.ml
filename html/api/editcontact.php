@@ -18,6 +18,7 @@
     require_once 'database.php';
 	if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
+		returnWithError("Connection Failed");
     }
 	else
 	{
@@ -37,9 +38,9 @@
 		echo $obj;
 	}
 	
-	function returnWithError()
+	function returnWithError( $error )
 	{
-		$retValue = '{"status":"error", "message" : "error"}';
+		$retValue = '{"status":"error", "message" : "'.$error.'"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
