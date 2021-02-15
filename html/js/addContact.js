@@ -11,6 +11,9 @@ form.addEventListener('submit',function(e)
   var lastName = document.getElementById('lastName').value;
   var email = document.getElementById('email').value;
   var phone = document.getElementById('phone').value;
+  // this will now be for the getting updated Date
+  var date = new Date();
+  
 
   // fetch post request
   fetch('api/addcontact.php',{
@@ -22,7 +25,7 @@ form.addEventListener('submit',function(e)
       lastname : lastName,
       phonenumber : phone,
       email : email,
-      date : '4/23/30'
+      date : date
       
     }),
     // adding xml headers
