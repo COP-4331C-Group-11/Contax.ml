@@ -6,7 +6,7 @@
 // 	"lastName" : string,
 //  "phone" : string,
 //  "email" : string,
-//  "id" : string,
+//  "id" : int,
 // }
 
 // Output: Type JSON {
@@ -22,7 +22,7 @@
     }
 	else
 	{
-		$sql = "UPDATE contacts SET (firstName='". $inData["firstName"]. "', lastName='" . $inData["lastName"] ."', phone='". $inData["phone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."') WHERE id='". $inData["id"]."';";
+		$sql = "UPDATE contacts SET firstName='". $inData["firstName"]. "', lastName='" . $inData["lastName"] ."', phone='". $inData["phone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."' WHERE id= ". intval($inData["id"]);
         returnWithSuccess();
 		$conn->close();
 	}
@@ -44,7 +44,7 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-    function returnWithSuccess( $yes )
+    function returnWithSuccess()
 	{
 		$retValue = '{"status":"success", "message" : ""}';
 		sendResultInfoAsJson( $retValue );
