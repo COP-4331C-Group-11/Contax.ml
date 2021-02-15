@@ -97,33 +97,20 @@ form.example button {
 }
 .btn-2
 {
-  background-color: #ad1818; 
+  background-color: #991111; 
   border: none;
   color: rgb(255, 255, 255);
   padding: 10px 30px;
   border-radius: 10px;
   position: absolute;
   text-align: center;
-  top: 600px;
+  top: 50px;
+  right:300px;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
 }
-.btn-3
-{
-  background-color: #ad1818; 
-  border: none;
-  color: rgb(255, 255, 255);
-  padding: 10px 30px;
-  border-radius: 10px;
-  position: absolute;
-  text-align: center;
-  top: 600px;
-  margin-left: -200px;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
+
 #contact-table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
