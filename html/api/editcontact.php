@@ -10,7 +10,7 @@
 // }
 
 // Output: Type JSON {
-// 	"message" : string // should return either error or success
+// 	"status" : string // should return either error or success
 // }
 	$inData = getRequestInfo();
 
@@ -24,7 +24,7 @@
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
-			returnWithError( $conn->error );
+			returnWithError();
 		}
         returnWithSuccess();
 		$conn->close();
@@ -41,15 +41,15 @@
 		echo $obj;
 	}
 	
-	function returnWithError( $err )
+	function returnWithError()
 	{
-		$retValue = '{"status":"' . $err . '"}';
+		$retValue = '{"status":"error"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
     function returnWithSuccess( $yes )
 	{
-		$retValue = '{"status":"Success!"}';
+		$retValue = '{"status":"success"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
