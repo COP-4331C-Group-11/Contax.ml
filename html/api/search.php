@@ -15,8 +15,6 @@
 //       "status": string,
 //       "message": string,
 //       "table": [
-//         "id": int,
-//         "userId": int,
 //         "firstName": string,
 //         "lastName": string,
 //         "phone": string,
@@ -54,9 +52,14 @@ function getContactTable($conn, $userId) {
 function sqlTableToArray($table) {
   $retval = array();
 
-  if ($table->num_rows > 0)
-    while($row = $table->fetch_assoc())
+  if ($table->num_rows > 0) {
+    while($row = $table->fetch_assoc()) {
+      // Remove sensitive information
+      unset($row["id"]);
+      unset($row["userId"]);
       array_push($retval, $row);
+    }
+  }
 
   return $retval;
 }
