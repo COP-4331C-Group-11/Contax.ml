@@ -34,7 +34,7 @@ else
 		$firstName = $row["firstName"];
 		$lastName = $row["lastName"];
 		$id = $row["id"];
-		//$sql2 = "UPDATE users SET dateLastOn = '". date("YY/mm/dd) . "' WHERE id = '". $id ."';";
+		$sql = "UPDATE users SET dateLastOn = '". date("YY/mm/dd) . "' WHERE id = '". $id ."';";
 		returnWithInfo($firstName, $lastName, $id );
 	}
 	else
