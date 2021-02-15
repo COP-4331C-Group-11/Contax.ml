@@ -31,6 +31,8 @@ async function login(username, password) {
   if (json.error != "")
   {
     // if failed it will return out of this function
+    const $message = document.getElementById('message');
+    $message.style.display = "block";
     return;
   }
   // if successful will redirect to contact page and make a cookie with the user data
