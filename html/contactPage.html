@@ -4,8 +4,7 @@
 
   <link rel="stylesheet" href="css/contactPage.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!--This is for generation of search function-->
-  <script src="js/contacts.js"></script>
+  
     
 <title>Add Contacts</title>
 </form>
@@ -34,8 +33,8 @@
         </div>
       </form>
       <div class = "mod-button">
-        <button class="btn-2"> Delete Contact</button>
-        <button class="btn-3"> Edit Contact</button>
+        <button class="btn-2"> Log Out</button>
+       
       </div>
       
        <!--Let's input our forms here , one for adding contacts one for editing contacts-->
@@ -44,14 +43,17 @@
           <!--This is for the first form of add contact-->
           
           
-          <form>
+          <form method="post" id="addContacts">
             <h2>Contacts</h2>
+            <input id="id" type="number" placeholder="ID" style ="margin-bottom: 20px;">
             <input id="firstName" type="text" placeholder="First Name">
             <input id="lastName" type="text" placeholder="Last Name">
-            <input id="phoneNumber" type="text" placeholder="Phone Number">
+            <input id="email" type="text" placeholder="Email">
+            <input id="phone" type="text" placeholder="Phone Number">
             <div class="button-container">
               <div id="add-results"></div>
-              <button id="add-contact" class="btn-1"> Add contact</button>
+              <button type ="submit" id="add-contact" class="btn-1"> Add contact</button>
+              <div id='error'> </div>
             </div>
           </form>
           
@@ -61,7 +63,7 @@
        
     </div>
     
-  <script src="js/contacts.js"></script>
+  
   <script src="js/addContact.js"></script>
   
 </body>
