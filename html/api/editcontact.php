@@ -7,6 +7,7 @@
 //  "oldPhone" : string,
 //  "newPhone" : string,
 //  "email" : string,
+//  "userId" : string
 // }
 
 // Output: Type JSON {
@@ -23,7 +24,7 @@
     }
 	else
 	{
-		$sql = "UPDATE contacts SET firstName='". $inData["firstName"] . "', lastName='" . $inData["lastName"] ."', phone='". $inData["newPhone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."' WHERE phone= '" . $inData["oldPhone"] . "'";
+		$sql = "UPDATE contacts SET firstName='". $inData["firstName"] . "', lastName='" . $inData["lastName"] ."', phone='". $inData["newPhone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."' WHERE phone= '" . $inData["oldPhone"] . "' AND userId = '" . $inData["userId"] . "'";
 		if( $result = $conn->query($sql) != TRUE )
 		{
 			returnWithError( $conn->error );
