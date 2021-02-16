@@ -26,7 +26,10 @@ async function login(username, password) {
 
   let json = await response.json();
 
-  console.log(json);
+  //console.log(json);
+
+  if (document.cookie != null)
+    window.location.href = "contactPage.html";
 
   if (json.status != "success")
   {
@@ -37,6 +40,6 @@ async function login(username, password) {
   }
   // if successful will redirect to contact page and make a cookie with the user data
   window.location.href = "contactPage.html";
-  saveCookie(json.firstname, json.lastname, json.id);
+  saveCookie(json.firstName, json.lastName, json.id);
 }
   
