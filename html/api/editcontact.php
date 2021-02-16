@@ -6,7 +6,7 @@
 // 	"lastName" : string,
 //  "phone" : string,
 //  "email" : string,
-//  "id" : int,
+//  "id" : int
 // }
 
 // Output: Type JSON {

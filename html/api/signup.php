@@ -16,6 +16,7 @@
 //  "message" : string // returns the actual error or nothing if success
 // }
 	$inData = getRequestInfo();
+	date_default_timezone_set('EST');
 
     require_once 'database.php';
 	if (!$conn) {
