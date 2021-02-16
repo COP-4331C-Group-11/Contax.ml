@@ -6,7 +6,7 @@
 // 	"lastName" : string,
 //  "phone" : string,
 //  "email" : string,
-//  "id" : int,
+//  "id" : int
 // }
 
 // Output: Type JSON {
@@ -14,6 +14,7 @@
 //	"message" : string // empty if success, error if error
 // }
 	$inData = getRequestInfo();
+	date_default_timezone_set('EST');
 
     require_once 'database.php';
 	if (!$conn) {
@@ -22,7 +23,11 @@
     }
 	else
 	{
-		$sql = "UPDATE contacts SET firstName='". $inData["firstName"]. "', lastName='" . $inData["lastName"] ."', phone='". $inData["phone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."' WHERE id= ". intval($inData["id"]);
+		$sql = "UPDATE contacts SET firstName='". $inData["firstName"] . "', lastName='" . $inData["lastName"] ."', phone='". $inData["phone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."' WHERE id= ". intval($inData["id"]);
+		if( $result = $conn->query($sql) != TRUE )
+		{
+			returnWithError( $conn->error );
+		}
         returnWithSuccess();
 		$conn->close();
 	}

@@ -15,6 +15,7 @@
 // }
 
 $inData = getRequestInfo();
+date_default_timezone_set('EST');
 	
 $id = 0;
 $firstName = "";
@@ -30,12 +31,15 @@ else
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0)
 	{
+		$date = date("Y-m-d");
 		$row = $result->fetch_assoc();
 		$firstName = $row["firstName"];
 		$lastName = $row["lastName"];
 		$id = $row["id"];
-		$sql = "UPDATE users SET dateLastOn = '". date("YY/mm/dd) . "' WHERE id = '". $id ."';";
-		returnWithInfo($firstName, $lastName, $id );
+		$intid = intval($id);
+		$sql1 = "UPDATE users SET dateLastOn= '". $date . "' WHERE id='" . $intid . "'";
+		$conn->query($sql1);
+		returnWithInfo($firstName, $lastName, $id);
 	}
 	else
 	{
@@ -61,7 +65,7 @@ function returnWithError( $err )
 	sendResultInfoAsJson( $retValue );
 }
 
-function returnWithInfo( $firstName, $lastName, $id )
+function returnWithInfo( $firstName, $lastName, $id)
 {
 	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","status":"success", "message" : ""}';
 	sendResultInfoAsJson( $retValue );
