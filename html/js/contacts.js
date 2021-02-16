@@ -36,6 +36,8 @@ function updateContactList(table) {
       // Save phone number for delete
       if (key == "phone")
         phoneNumber = row[key];
+      if (key == "dateCreated")
+        continue;
 
       tableRow.insertCell().innerHTML = row[key];
     }
@@ -83,6 +85,7 @@ async function deleteContact(phoneNumber) {
 }
 
 function editContact(tableRow, editBttn) {
+  tableRow.style.outline = "2px solid black";
   // Make cells editable
   for (let i = 0; i < tableRow.cells.length-1; i++)
     tableRow.cells[i].contentEditable = "true";
@@ -110,7 +113,6 @@ async function confirmEdit(tableRow, editBttn, confirmBttn) {
   for(let i = 0; i < tableRow.cells.length-2; i++)
     json[Object.keys(json)[i+1]] = tableRow.cells[i].innerHTML;
   
-  console.log(json);
   const apiUrl="api/editcontact.php";
   let response = await fetch(apiUrl, {
     method: "POST",
