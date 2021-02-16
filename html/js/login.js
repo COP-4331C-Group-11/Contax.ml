@@ -26,11 +26,12 @@ async function login(username, password) {
 
   let json = await response.json();
 
-  //console.log(json);
+  console.log(json);
 
   if (document.cookie != null)
   {
     window.location.href = "contactPage.html";
+    return;
   }
 
   if (json.status != "success")
