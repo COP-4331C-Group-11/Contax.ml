@@ -92,15 +92,17 @@ body {
   text-align: center;
 }
 
-.edit-button, .delete-button {
+.edit-button, .confirm-button, .delete-button {
   margin: 0 5px;
   height: 25px;
   width: 70px;
   border-radius: 10px;
   border: none;
+  color: #fff;
+  font-size: .75rem;
 }
 
-.edit-button {
+.edit-button, .confirm-button {
   background-color: #8cdd84;
 }
 

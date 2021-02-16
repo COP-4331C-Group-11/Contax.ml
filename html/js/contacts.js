@@ -47,7 +47,7 @@ function updateContactList(table) {
     deleteBttn.classList.add("delete-button");
     deleteBttn.innerHTML = "DELETE";
     // Add event listeners
-    editBttn.addEventListener("click", (e) => editContact());
+    editBttn.addEventListener("click", (e) => editContact(tableRow, editBttn));
     deleteBttn.addEventListener("click", (e) => deleteContact(phoneNumber));
     // Insert into html table
     bttnCell = tableRow.insertCell();
@@ -82,8 +82,44 @@ async function deleteContact(phoneNumber) {
   updateTable(searchInput.value);
 }
 
-async function editTable() {
+function editContact(tableRow, editBttn) {
+  // Make cells editable
+  for (let i = 0; i < tableRow.cells.length-1; i++)
+    tableRow.cells[i].contentEditable = "true";
+
+  // Create confirm button
+  const confirmBttn = document.createElement("BUTTON");
+  confirmBttn.classList.add("confirm-button");
+  confirmBttn.innerHTML = "CONFIRM";
+  confirmBttn.addEventListener("click", () => confirmEdit(tableRow, editBttn, confirmBttn));
+
+  // Replace edit button with confirm button
+  editBttn.replaceWith(confirmBttn);
+}
+
+async function confirmEdit(tableRow, editBttn, confirmBttn) {
+  let json = {
+    userId: readCookie().userId,
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+  }
+
+  // Add edited data to object
+  for(let i = 0; i < tableRow.cells.length-2; i++)
+    json[Object.keys(json)[i+1]] = tableRow.cells[i].innerHTML;
   
+  console.log(json);
+  const apiUrl="api/editcontact.php";
+  let response = await fetch(apiUrl, {
+    method: "POST",
+    body: JSON.stringify(json)
+  });
+
+  // Restore edit button
+  confirmBttn.replaceWith(editBttn);
+  updateTable(searchInput.value);
 }
 
 main();

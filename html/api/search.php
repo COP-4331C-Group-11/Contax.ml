@@ -67,9 +67,12 @@ function sqlTableToArray($table) {
 function searchByString($table, $searchStr) {
   $result = array();
 
-  foreach($table as $row)
-    if (str_contains($row["firstName"], $searchStr) || str_contains($row["lastName"], $searchStr))
+  foreach($table as $row){
+    if (str_contains(strtolower($row["firstName"]), $searchStr))
       array_push($result, $row);
+    else if (str_contains(strtolower($row["lastName"]), $searchStr))
+      array_push($result, $row);
+  }
 
   return $result;
 }
