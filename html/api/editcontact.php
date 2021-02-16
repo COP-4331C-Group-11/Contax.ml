@@ -4,9 +4,9 @@
 // Input: Type JSON {
 // 	"firstName" : string,
 // 	"lastName" : string,
-//  "phone" : string,
+//  "oldPhone" : string,
+//  "newPhone" : string,
 //  "email" : string,
-//  "id" : int
 // }
 
 // Output: Type JSON {
@@ -23,13 +23,15 @@
     }
 	else
 	{
-		$sql = "UPDATE contacts SET firstName='". $inData["firstName"] . "', lastName='" . $inData["lastName"] ."', phone='". $inData["phone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."' WHERE id= ". intval($inData["id"]);
+		$sql = "UPDATE contacts SET firstName='". $inData["firstName"] . "', lastName='" . $inData["lastName"] ."', phone='". $inData["newPhone"] ."', email='" . $inData["email"] . "', dateCreated='". date("Y/m/d") ."' WHERE phone= '" . $inData["oldPhone"] . "'";
 		if( $result = $conn->query($sql) != TRUE )
 		{
 			returnWithError( $conn->error );
+			return;
 		}
         returnWithSuccess();
 		$conn->close();
+		return;
 	}
 		
 	function getRequestInfo()
