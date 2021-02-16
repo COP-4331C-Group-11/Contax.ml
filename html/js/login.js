@@ -29,7 +29,9 @@ async function login(username, password) {
   //console.log(json);
 
   if (document.cookie != null)
+  {
     window.location.href = "contactPage.html";
+  }
 
   if (json.status != "success")
   {
