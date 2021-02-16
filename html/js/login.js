@@ -28,7 +28,7 @@ async function login(username, password) {
 
   console.log(json);
 
-  if (document.cookie != null)
+  if (readCookie() !== null)
   {
     window.location.href = "contactPage.html";
     return;
