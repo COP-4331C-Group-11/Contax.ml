@@ -9,7 +9,9 @@
 // Output: Type JSON {
 // 	"id" : string,
 // 	"firstName" : string,
-// 	"lastName" ; string
+// 	"lastName" : string,
+//  "status" : string, // Returns the error or success
+//  "message" : string // returns the actual error or nothing if success
 // }
 
 $inData = getRequestInfo();
@@ -32,7 +34,7 @@ else
 		$firstName = $row["firstName"];
 		$lastName = $row["lastName"];
 		$id = $row["id"];
-		
+		$sql = "UPDATE users SET dateLastOn = '". date("YY/mm/dd) . "' WHERE id = '". $id ."';";
 		returnWithInfo($firstName, $lastName, $id );
 	}
 	else
@@ -55,12 +57,12 @@ function sendResultInfoAsJson( $obj )
 
 function returnWithError( $err )
 {
-	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+	$retValue = '{"id":0,"firstName":"","lastName":"","status": "error", "message" : "' . $err . '"}';
 	sendResultInfoAsJson( $retValue );
 }
 
 function returnWithInfo( $firstName, $lastName, $id )
 {
-	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","status":"success", "message" : ""}';
 	sendResultInfoAsJson( $retValue );
 }
