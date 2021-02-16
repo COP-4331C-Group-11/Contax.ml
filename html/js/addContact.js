@@ -1,40 +1,56 @@
+var form = document.getElementById('add-contact-modal')
 
-var form = document.getElementById('addContacts')
-// wait untill form is submitted
-form.addEventListener('submit',function(e)
-{
+// wait until form is submitted
+form.addEventListener('submit', (e) => addContact(e))
+
+document.querySelector("#new-contact-button").addEventListener("click", (e) => {
+  modal = document.querySelector("#modal-container");
+  modal.style.opacity = 1;
+  modal.style.visibility = "visible";
+});
+
+document.querySelector(".close-button").addEventListener("click", (e) => {
+  e.preventDefault();
+  modal = document.querySelector("#modal-container");
+  modal.style.opacity = 0;
+  modal.style.visibility = "hidden";
+});
+
+async function addContact(e) {
   // prevent auto-submission 
   e.preventDefault()
 
-  var id = document.getElementById('id').value;
-  var firstName = document.getElementById('firstName').value;
-  var lastName = document.getElementById('lastName').value;
-  var email = document.getElementById('email').value;
-  var phone = document.getElementById('phone').value;
-  // this will now be for the getting updated Date
-  var date = new Date();
-  
+  var firstName = document.getElementById('fname-input').value;
+  var lastName = document.getElementById('lname-input').value;
+  var email = document.getElementById('email-input').value;
+  var phone = document.getElementById('phone-input').value;
+
+  const currDate = (new Date()).toISOString().split("T")[0];
+  console.log(currDate);
 
   // fetch post request
-  fetch('api/addcontact.php',{
+  let response = await fetch('api/addcontact.php', {
     method:'POST',
-    body: JSON.stringify
-    ({
-      userId : id,
-      firstname : firstName,
-      lastname : lastName,
-      phonenumber : phone,
-      email : email,
-      date : date
-      
-    }),
-    // adding xml headers
-    
-})
-  //getting the promise
-  .then(res => res.text())          
-  .then(text => document.getElementById('error').innerHTML = text)  
-  
-//
-})
+    body: JSON.stringify({
+      userId: readCookie().userId,
+      firstname: firstName,
+      lastname: lastName,
+      phonenumber: phone,
+      email: email,
+      date: currDate
+    })
+  });
 
+  let json = await response.json();
+
+  if (json.status === "error")
+    console.log(json.message);
+
+  // Close modal
+  modal = document.querySelector("#modal-container");
+  modal.style.opacity = 0;
+  modal.style.visibility = "hidden";
+
+  // Update Table
+  updateTable(searchInput.value);
+}

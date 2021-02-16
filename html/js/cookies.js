@@ -23,16 +23,15 @@ function saveCookie(firstName, lastName, userId)
 
 function readCookie()
 {
-	// parses JSON
+  // parses JSON
 	try {
-		return JSON.parse(document.cookie);
-
+    let jsonStr = document.cookie.match(/\{.*\}/g)[0];
+		return JSON.parse(jsonStr);
 	} catch (error) {
 		// returns back to homepage if there was no JSON
 		document.location.href = "index.html";
 		return null;
 	}
-	
 }
 
 function doLogout()

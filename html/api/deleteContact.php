@@ -18,7 +18,7 @@ $json = file_get_contents('php://input');
 $data = json_decode($json);
 
 // Validate JSON
-if ($data == null || $data->$userId == null || $data->$phone == null)
+if (is_null($data) || is_null($data->userId) || is_null($data->phone))
   returnWithError("Input invalid");
 // Validate JSON schema
 if (!property_exists($data, "userId") || !property_exists($data, "phone"))

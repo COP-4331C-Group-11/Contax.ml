@@ -27,7 +27,7 @@ $json = file_get_contents('php://input');
 $data = json_decode($json);
 
 // Validate JSON
-if ($data == null)
+if (is_null($data) || is_null($data->userId) || is_null($data->searchStr))
   returnWithError("Input invalid");
 // Validate JSON schema
 if (!property_exists($data, "userId") || !property_exists($data, "searchStr"))
@@ -67,9 +67,12 @@ function sqlTableToArray($table) {
 function searchByString($table, $searchStr) {
   $result = array();
 
-  foreach($table as $row)
-    if (str_contains($row["firstName"], $searchStr) || str_contains($row["lastName"], $searchStr))
+  foreach($table as $row){
+    if (str_contains(strtolower($row["firstName"]), $searchStr))
       array_push($result, $row);
+    else if (str_contains(strtolower($row["lastName"]), $searchStr))
+      array_push($result, $row);
+  }
 
   return $result;
 }
