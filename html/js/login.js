@@ -28,6 +28,12 @@ async function login(username, password) {
 
   console.log(json);
 
+  if (readCookie() !== null)
+  {
+    window.location.href = "contactPage.html";
+    return;
+  }
+
   if (json.status != "success")
   {
     // if failed it will display a message and return out of this function
@@ -37,6 +43,6 @@ async function login(username, password) {
   }
   // if successful will redirect to contact page and make a cookie with the user data
   window.location.href = "contactPage.html";
-  saveCookie(json.firstname, json.lastname, json.id);
+  saveCookie(json.firstName, json.lastName, json.id);
 }
   
