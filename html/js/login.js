@@ -28,7 +28,7 @@ async function login(username, password) {
 
   console.log(json);
 
-  if (json.error != "")
+  if (json.status != "success")
   {
     // if failed it will display a message and return out of this function
     const $message = document.getElementById('message');
@@ -40,4 +40,3 @@ async function login(username, password) {
   saveCookie(json.firstname, json.lastname, json.id);
 }
   
-
