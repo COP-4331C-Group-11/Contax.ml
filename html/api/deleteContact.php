@@ -33,7 +33,6 @@ deleteRecord($conn, $userId, $phone);
 
 function deleteRecord($conn, $userId, $phone) {
   $sql = "DELETE FROM contacts WHERE userId = ".$userId." AND phone = ".$phone;
-  $retObj;
 
   // Check for errors
   if ($conn->query($sql) === TRUE)

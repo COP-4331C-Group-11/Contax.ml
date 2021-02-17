@@ -6,6 +6,9 @@ document.getElementById("contact-search")
   });
 
 function main() {
+  if (readCookie() === null)
+    document.location.href("index.html");
+
   updateTable("");
 }
 
