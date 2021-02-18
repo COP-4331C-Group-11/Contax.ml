@@ -59,7 +59,7 @@ paths:
   /signup.php:
     post:
       tags:
-        - Signup
+        - Users
       description: Registers user
       consumes:
         - application/json
@@ -161,10 +161,10 @@ definitions:
     properties:
       firstName:
         type: string
-        example: john
+        example: joe
       lastName:
         type: string
-        example: password123
+        example: joe
       login:
         type: string
         example: joe
@@ -175,14 +175,14 @@ definitions:
     type: object
     properties:
       id:
-        type: int
+        type: integer
         example: 1
       firstName:
         type: string
-        example: john
+        example: joe
       lastName:
         type: string
-        example: password123
+        example: joe
       login:
         type: string
         example: joe
@@ -214,7 +214,7 @@ definitions:
     type: object
     properties:
       id:
-        type: int
+        type: integer
         example: 1
       firstName:
         type: string
