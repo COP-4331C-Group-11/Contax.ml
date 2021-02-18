@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="css/register.css">
-  <script type="text/javascript" src="js/register.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
@@ -44,15 +43,16 @@ Signup Form</div>
 <div class="pass-link">
 
 <div class="field btn">
-            <!-- <div class="btn-layer">
-</div> -->
+ 
 <center>
 <!--     <button class="button" value="Register" onclick="doReg();" id="button-reg"> Register </button> -->
 <button type = "submit" class="button" value="Register" id="button-reg"> Register </button>
 <div id="encoded"></div>
 </center>
           </div>
-          <span id="regAddResult"></span>
+          <div id ="message" style ="display:none">
+            <center><p>Account taken</p></center>
+          </div>
 <div class="signup-link">
  
  <a href="index.html">Back to Log In Page</a></div>
@@ -60,5 +60,6 @@ Signup Form</div>
 
 </div>
 <script type="text/javascript" src="js/register.js"></script>
+<script type="text/javascript" src="js/cookies.js"></script>
 </body>
 </html>
