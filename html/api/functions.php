@@ -118,7 +118,10 @@ function searchTable($table, $fname, $lname, $phone)
    
     foreach($table as $row)
      {
-        if( (strcmp(strtolower($row["firstName"]), strtolower($fname)) == 0) && (strcmp(strtolower($row["last"]), strtolower($lname)) ==0))
+        // Checks when both fname & lname are present if they match if it's in database, otherwise assumes only a single name is given, and
+        // Compares to make sure that a similar phonenumber isn't in the row from database.
+        if( (strcmp(strtolower($row["firstName"]), strtolower($fname)) == 0) && (strcmp(strtolower($row["last"]), strtolower($lname)) ==0)
+            && (!isempty($fname) && !isempty($lname)))
         {
             return 1;
         }  
