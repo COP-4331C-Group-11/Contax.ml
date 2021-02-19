@@ -1,61 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
   <head>
-    <meta charset="utf-8">
-    <title>Contact</title>
-    <link rel="stylesheet" href="css/login.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <title>Contax</title>
+    <link rel="icon" href="img/favicon.svg" />
+    <link rel="stylesheet" href="css/login.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-
   <body>
     <div class="logo">
-      <img src="img/Contact.png" width=150 alt="contact logo">
+      <img src="img/Contact.png" width="150" alt="contact logo" />
     </div>
-
     <div class="wrapper">
-      
       <div class="title-text">
-        <div class="title login">
-          Login Form
-        </div>
-        <div class="title signup">
-          Signup Form
-        </div>
+        <div class="title login">Login Form</div>
+        <div class="title signup">Signup Form</div>
       </div>
-
       <div class="hand">
-        <img src="img/Mask-Group-1.png" alt="hand" width="120">
-      </div> 
-      <div id ="message" style ="display: none">
+        <img src="img/Mask-Group-1.png" alt="hand" width="120" />
+      </div>
+      <div id="message" style="display: none">
         <center><p>wrong username or password</p></center>
       </div>
-
       <div class="form-inner">
-          <form id="loginForm" class="login" method="post">
-            <div class="field">
-              <input type="text" placeholder="Username" id="loginName" required>
-            </div>
-            <div class="field">
-              <input type="password" placeholder="Password" id="loginPassword" required>
-            </div>
-
-            <div class="field btn">
-              <center>        
-                  <input type="submit" id="login-btn"value="Login">
-              </center>
-            </div>
-            <span id="loginResult"></span>
-            <div class="signup-link">
-               Not a member? 
-               <a href="Register.html">Signup now</a>
-            </div>
-          </form>
+        <form id="loginForm" class="login" method="post">
+          <div class="field">
+            <input type="text" placeholder="Username" id="loginName" required />
+          </div>
+          <div class="field">
+            <input
+              type="password"
+              placeholder="Password"
+              id="loginPassword"
+              required
+            />
+          </div>
+          <div class="field btn">
+            <center>
+              <input type="submit" id="login-btn" value="Login" />
+            </center>
+          </div>
+          <span id="loginResult"></span>
+          <div class="signup-link">
+            Not a member?
+            <a href="Register.html">Signup now</a>
+          </div>
+        </form>
+      </div>
     </div>
-
-  </div>
-  <script type="text/javascript" src="js/login.js"></script>
-  <script type="text/javascript" src="js/cookies.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/cookies.js"></script>
   </body>
-
 </html>
