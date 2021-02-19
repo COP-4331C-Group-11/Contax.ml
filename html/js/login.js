@@ -1,26 +1,25 @@
-var form = document.getElementById('loginForm')
+var form = document.getElementById("loginForm");
 // wait untill form is submitted
 
-form.addEventListener('submit', (e) => doLogin(e));
+form.addEventListener("submit", (e) => doLogin(e));
 
 function doLogin(e) {
-  // prevent auto-submission 
-  e.preventDefault()
+  // prevent auto-submission
+  e.preventDefault();
 
-  var username = document.getElementById('loginName').value;
-  var password = document.getElementById('loginPassword').value;
+  var username = document.getElementById("loginName").value;
+  var password = document.getElementById("loginPassword").value;
 
   login(username, password);
-
 }
 
 // trys to login
 async function login(username, password) {
-  let response = await fetch('api/login.php', {
-    method: 'POST',
+  let response = await fetch("api/login.php", {
+    method: "POST",
     body: JSON.stringify({
-      login : username,
-      password : password,
+      login: username,
+      password: sha256(password)
     })
   });
 
@@ -28,16 +27,14 @@ async function login(username, password) {
 
   console.log(json);
 
-  if (readCookie() !== null)
-  {
+  if (readCookie() !== null) {
     window.location.href = "contactPage.html";
     return;
   }
 
-  if (json.status != "success")
-  {
+  if (json.status != "success") {
     // if failed it will display a message and return out of this function
-    const $message = document.getElementById('message');
+    const $message = document.getElementById("message");
     $message.style.display = "block";
     return;
   }
@@ -45,4 +42,3 @@ async function login(username, password) {
   window.location.href = "contactPage.html";
   saveCookie(json.firstName, json.lastName, json.id);
 }
-  
