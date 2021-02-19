@@ -19,7 +19,7 @@ async function login(username, password) {
     method: "POST",
     body: JSON.stringify({
       login: username,
-      password: sha256(password)
+      password: password
     })
   });
 
@@ -39,6 +39,6 @@ async function login(username, password) {
     return;
   }
   // if successful will redirect to contact page and make a cookie with the user data
-  window.location.href = "contactPage.html";
   saveCookie(json.firstName, json.lastName, json.id);
+  window.location.href = "contactPage.html";
 }
