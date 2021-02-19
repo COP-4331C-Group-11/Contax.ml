@@ -5,24 +5,33 @@
 //   Type: JSON
 //   {
 //     "userId": int,
+//     "firstName": string,
+//     "lastName": string,
 //     "searchStr": string,
 //   }
 // Output:
 //   Type: JSON
-//   {
-//     "table": [
-//       "id": int,
-//       "userId": int,
-//       "firstName": string,
-//       "lastName": string,
-//       "phone": string,
-//       "email": string,
-//       "dateCreated": string
-//     ]
-//   }
+//     {
+//       "status": string,
+//       "message": string,
+//       "table": [
+//         "firstName": string,
+//         "lastName": string,
+//         "phone": string,
+//         "email": string,
+//         "dateCreated": string
+//       ]
+//     }
 
 $json = file_get_contents('php://input');
 $data = json_decode($json);
+
+// Validate JSON
+if (is_null($data) || is_null($data->userId) || is_null($data->searchStr))
+  returnWithError("Input invalid");
+// Validate JSON schema
+if (!property_exists($data, "userId") || !property_exists($data, "searchStr"))
+  returnWithError("Input invalid");
 
 $userId = $data->userId;
 $searchStr = $data->searchStr;
@@ -33,7 +42,6 @@ $contactTableSQL = getContactTable($conn, $userId);
 $contactTable = sqlTableToArray($contactTableSQL);
 $filteredTable = searchByString($contactTable, $searchStr);
 
-// printTable($filteredTable);
 returnWithTable($filteredTable);
 
 function getContactTable($conn, $userId) {
@@ -44,33 +52,27 @@ function getContactTable($conn, $userId) {
 function sqlTableToArray($table) {
   $retval = array();
 
-  if ($table->num_rows > 0)
-    while($row = $table->fetch_assoc())
+  if ($table->num_rows > 0) {
+    while($row = $table->fetch_assoc()) {
+      // Remove sensitive information
+      unset($row["id"]);
+      unset($row["userId"]);
       array_push($retval, $row);
+    }
+  }
 
   return $retval;
-}
-
-function printTable($table) {
-  echo "<table>";
-  echo "<tr><th>id</th><th>user id</th><th>first name</th><th>last name</th><th>phone</th><th>email</th><th>date created</th>";
-  // output data of each row
-  foreach($table as $row) {
-    echo "<tr>";
-    foreach ($row as $key => $value) {
-      echo "<td>".$value."</td>";
-    }
-    echo "</tr>";
-  }
-  echo "</table>";
 }
 
 function searchByString($table, $searchStr) {
   $result = array();
 
-  foreach($table as $row)
-    if (str_contains($row["firstName"], $searchStr) || str_contains($row["lastName"], $searchStr))
+  foreach($table as $row){
+    if (str_contains(strtolower($row["firstName"]), $searchStr))
       array_push($result, $row);
+    else if (str_contains(strtolower($row["lastName"]), $searchStr))
+      array_push($result, $row);
+  }
 
   return $result;
 }
@@ -89,7 +91,8 @@ function returnWithTable($table) {
   }
 
   // Add empty error
-  $json->error = "";
+  $json->status = "success";
+  $json->message = "";
 
   // Specify response type
   header('Content-type: application/json');
@@ -99,8 +102,9 @@ function returnWithTable($table) {
 function returnWithError($err) {
   // Creates empty object
   $json = new \stdClass();
-  $json->error = $err;
+  $json->status = "error";
+  $json->message = $err;
   header('Content-type: application/json');
-  echo $json;
+  echo json_encode($json);
   exit();
 }

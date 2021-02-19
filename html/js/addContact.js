@@ -1,50 +1,56 @@
-// adding contacts to database 
+var form = document.getElementById('add-contact-modal')
 
-// Convert to json on 
-document.getElementById('add-contact').addEventListener('click',addContact);
+// wait until form is submitted
+form.addEventListener('submit', (e) => addContact(e))
 
-function addContact()
-{
-//acess the text feilds 
-let tempFristName = document.getElementById('firstName').value;
-let tempLastName = document.getElementById('lastName').value;
-let tempPhoneNumber = document.getElementById('phoneNumber').value;
+document.querySelector("#new-contact-button").addEventListener("click", (e) => {
+  modal = document.querySelector("#modal-container");
+  modal.style.opacity = 1;
+  modal.style.visibility = "visible";
+});
 
-//creating the json object 
-let myObject = JSON.stringify({"First Name":tempFristName,"tempLastName":tempLastName,"Phone Number":tempPhoneNumber});
-localStorage.setItem('tester',myObject);  
-let tempHolder = localStorage.getItem('tester');
-console.log(JSON.parse(tempHolder));
+document.querySelector(".close-button").addEventListener("click", (e) => {
+  e.preventDefault();
+  modal = document.querySelector("#modal-container");
+  modal.style.opacity = 0;
+  modal.style.visibility = "hidden";
+});
 
-// setting to JSON
-const jsonString = JSON.stringify(tempHolder);
+async function addContact(e) {
+  // prevent auto-submission 
+  e.preventDefault()
 
-//******** This is where the XML request is happening *********/
-const xhr = new XMLHttpRequest();
-  // prepares a HTTP requesto to be
-  xhr.open("POST","api/database.php");
-  // content-type header
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  var firstName = document.getElementById('fname-input').value;
+  var lastName = document.getElementById('lname-input').value;
+  var email = document.getElementById('email-input').value;
+  var phone = document.getElementById('phone-input').value;
 
-  xhr.send(jsonString); 
-  // using promise statments 
-  let promise = new Promise((resolve, reject) =>
-  {
-    // onreadystate gets calls every time readySate propertry in the request chnages  
-    xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-                // this is our sucess 
-				resolve(document.getElementById("add-results").innerHTML = "Adeed to contacts");
-            }
-            else
-            {
-                // this is our failure- not able to add to contacts
-                reject(document.getElementById("colorAddResult").innerHTML = err.message);
-            }
-		};
-        xhr.send(jsonString); 
-})
+  const currDate = (new Date()).toISOString().split("T")[0];
+  console.log(currDate);
+
+  // fetch post request
+  let response = await fetch('api/addcontact.php', {
+    method:'POST',
+    body: JSON.stringify({
+      userId: readCookie().userId,
+      firstname: firstName,
+      lastname: lastName,
+      phonenumber: phone,
+      email: email,
+      date: currDate
+    })
+  });
+
+  let json = await response.json();
+
+  if (json.status === "error")
+    console.log(json.message);
+
+  // Close modal
+  modal = document.querySelector("#modal-container");
+  modal.style.opacity = 0;
+  modal.style.visibility = "hidden";
+
+  // Update Table
+  updateTable(searchInput.value);
 }
-
