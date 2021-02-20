@@ -32,6 +32,6 @@ form.addEventListener('submit',function(e)
   .then(text => console.log(text)) 
 
   
-  window.location.href = "contactPage.html";
+  window.location.href = "index.html";
 
 })
