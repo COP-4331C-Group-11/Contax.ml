@@ -34,6 +34,6 @@ form.addEventListener("submit", function (e) {
       }
       // if successful will redirect to contact page and make a cookie with the user data
       saveCookie(json.firstName, json.lastName, json.id);
-      window.location.href = "contactPage.html";
+      window.location.href = "index.html";
     });
 });
