@@ -3,6 +3,10 @@ var form = document.getElementById("loginForm");
 
 form.addEventListener("submit", (e) => doLogin(e));
 
+// Check cookie
+if (readCookie() !== null)
+  document.location.href = "contactPage.html";
+
 function doLogin(e) {
   // prevent auto-submission
   e.preventDefault();
