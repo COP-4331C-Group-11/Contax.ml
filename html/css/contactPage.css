@@ -10,12 +10,18 @@ html, body{
   padding: 0;
   height: 100%;
   width: 100%;
+  min-height: 550px;
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+button {
+  border: none;
+  color: #fff;
 }
 
 button:active {
@@ -31,6 +37,7 @@ button:active {
   width: 80%;
   max-width: 1000px;
   height: calc(100% - 150px);
+  min-height: 500px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.863);
   border-radius: 25px;
@@ -39,6 +46,15 @@ button:active {
 #contact-container h1 {
   margin: 0 0 10px 0;
   color: #25948E;
+}
+
+#logout-button {
+  align-self: flex-end;
+  min-height: 40px;
+  width: 100px;
+  background-color: gray;
+  font-size: 1rem;
+  border-radius: 10px;
 }
 
 /* Search Bar */
@@ -50,7 +66,7 @@ button:active {
   margin-bottom: 20px;
 }
 
-#search-container img {
+#user-icon {
   position: absolute;
   box-sizing: border-box;
   top: 0;
@@ -67,6 +83,21 @@ button:active {
   border: none;
   border-radius: 20px;
   text-align: center;
+}
+
+#mic-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border: none;
+  background: none;
+}
+
+#mic-button img {
+  width: 100%;
 }
 
 /* Contact Table */
@@ -109,8 +140,6 @@ button:active {
   height: 25px;
   width: 70px;
   border-radius: 10px;
-  border: none;
-  color: #fff;
   font-size: .75rem;
 }
 
@@ -126,12 +155,10 @@ button:active {
 
 #new-contact-button {
   align-self: flex-end;
-  height: 50px;
+  min-height: 50px;
   width: 250px;
   border-radius: 20px;
-  border: none;
   font-size: 1.2rem;
-  color: #fff;
   background-color: #ECBC27;
   box-shadow: -5px 5px 40px -15px #000;
 }
@@ -181,6 +208,12 @@ button:active {
 #add-contact-modal h2 {
   margin: 0;
   margin-bottom: 10px;
+  color: #fff;
+}
+
+#error-message {
+  margin: 0;
+  color: red;
 }
 
 #add-contact-modal input {

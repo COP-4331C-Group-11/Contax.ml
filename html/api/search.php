@@ -68,9 +68,9 @@ function searchByString($table, $searchStr) {
   $result = array();
 
   foreach($table as $row){
-    if (str_contains(strtolower($row["firstName"]), $searchStr))
+    if (str_contains(strtolower($row["firstName"]), strtolower($searchStr)))
       array_push($result, $row);
-    else if (str_contains(strtolower($row["lastName"]), $searchStr))
+    else if (str_contains(strtolower($row["lastName"]), strtolower($searchStr)))
       array_push($result, $row);
   }
 

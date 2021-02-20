@@ -19,7 +19,7 @@ async function login(username, password) {
     method: "POST",
     body: JSON.stringify({
       login: username,
-      password: password
+      password: sha256(password)
     })
   });
 
@@ -34,8 +34,8 @@ async function login(username, password) {
 
   if (json.status != "success") {
     // if failed it will display a message and return out of this function
-    const $message = document.getElementById("message");
-    $message.style.display = "block";
+    const message = document.getElementById("message");
+    message.style.display = "block";
     return;
   }
   // if successful will redirect to contact page and make a cookie with the user data

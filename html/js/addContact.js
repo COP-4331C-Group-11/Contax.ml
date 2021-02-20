@@ -1,4 +1,5 @@
-var form = document.getElementById('add-contact-modal')
+let form = document.getElementById('add-contact-modal')
+let errorMessage = document.querySelector("#error-message");
 
 // wait until form is submitted
 form.addEventListener('submit', (e) => addContact(e))
@@ -26,7 +27,6 @@ async function addContact(e) {
   var phone = document.getElementById('phone-input').value;
 
   const currDate = (new Date()).toISOString().split("T")[0];
-  console.log(currDate);
 
   // fetch post request
   let response = await fetch('api/addcontact.php', {
@@ -43,8 +43,14 @@ async function addContact(e) {
 
   let json = await response.json();
 
-  if (json.status === "error")
-    console.log(json.message);
+  if (json.status === "error") {
+    errorMessage.innerText = json.message;
+    return;
+  }
+
+  // Reset form
+  form.reset();
+  errorMessage.innerText = "";
 
   // Close modal
   modal = document.querySelector("#modal-container");
