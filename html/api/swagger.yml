@@ -32,6 +32,54 @@ paths:
           description: URL Not Found
           schema:
             $ref: '#/definitions/404Response'
+  /editcontact.php:
+    post:
+      tags:
+        - Contacts
+      description: Edits the contacts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: contactItem
+          description: Edit Contact
+          schema:
+            $ref: '#/definitions/newContact'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/simpleResponse'
+        404:
+          description: URL Not Found
+          schema:
+            $ref: '#/definitions/404Response'
+  /signup.php:
+    post:
+      tags:
+        - Users
+      description: Registers user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: contactItem
+          description: Signup
+          schema:
+            $ref: '#/definitions/Register'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/registerResponse'
+        404:
+          description: URL Not Found
+          schema:
+            $ref: '#/definitions/404Response'
   /search.php:
     post:
       tags:
@@ -104,22 +152,83 @@ definitions:
     properties:
       login:
         type: string
-        example: john
+        example: joe
       password:
         type: string
+        example: joe
+  Register:
+    type: object
+    properties:
+      firstName:
+        type: string
+        example: joe
+      lastName:
+        type: string
+        example: joe
+      login:
+        type: string
+        example: joe
+      password:
+        type: string
+        example: joe
+  registerResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      firstName:
+        type: string
+        example: joe
+      lastName:
+        type: string
+        example: joe
+      login:
+        type: string
+        example: joe
+      password:
+        type: string
+        example: joe
+      status:
+        type: string
+        example: success
+      message:
+        type: string
+        example: 
+  newContact:
+    type: object
+    properties:
+      firstName:
+        type: string
+        example: john
+      lastName:
+        type: string
         example: password123
+      oldPhone:
+        type: string
+        example: 1231231234
+      newPhone:
+        type: string
+        example: 1231231231
   UserData:
     type: object
     properties:
       id:
-        type: string
-        example: '1'
+        type: integer
+        example: 1
       firstName:
         type: string
-        example: John
+        example: joe
       lastName:
         type: string
-        example: Watson
+        example: joe
+      status:
+        type: string
+        example: success
+      message:
+        type: string
+        example: 
+      
   searchParams:
     type: object
     properties:
