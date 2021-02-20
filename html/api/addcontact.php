@@ -44,9 +44,11 @@ if(!hasName($fname, $lname))
     exit();
 }
 
+if (empty($phonenum))
+    returnMessage("error", "Error: No phonenumber for contact");
 #If phone number isn't left blank, it's checked to see if it's in a valid format. If not, gives error, if has hyphens, they're removed. 
 #Only accepts 7 and 10 digit phone numbers.
-if (!empty($phonenum) && !validPhone($phonenum))
+if (!validPhone($phonenum))
 {
     returnMessage("error","Error: ".$phonenum." is not a properly formatted phone number");
     exit();

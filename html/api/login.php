@@ -9,10 +9,13 @@
 // Output: Type JSON {
 // 	"id" : string,
 // 	"firstName" : string,
-// 	"lastName" ; string
+// 	"lastName" : string,
+//  "status" : string, // Returns the error or success
+//  "message" : string // returns the actual error or nothing if success
 // }
 
 $inData = getRequestInfo();
+date_default_timezone_set('EST');
 	
 $id = 0;
 $firstName = "";
@@ -28,12 +31,15 @@ else
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0)
 	{
+		$date = date("Y-m-d");
 		$row = $result->fetch_assoc();
 		$firstName = $row["firstName"];
 		$lastName = $row["lastName"];
 		$id = $row["id"];
-		
-		returnWithInfo($firstName, $lastName, $id );
+		$intid = intval($id);
+		$sql1 = "UPDATE users SET dateLastOn= '". $date . "' WHERE id='" . $intid . "'";
+		$conn->query($sql1);
+		returnWithInfo($firstName, $lastName, $id);
 	}
 	else
 	{
@@ -55,12 +61,12 @@ function sendResultInfoAsJson( $obj )
 
 function returnWithError( $err )
 {
-	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+	$retValue = '{"id":0,"firstName":"","lastName":"","status": "error", "message" : "' . $err . '"}';
 	sendResultInfoAsJson( $retValue );
 }
 
-function returnWithInfo( $firstName, $lastName, $id )
+function returnWithInfo( $firstName, $lastName, $id)
 {
-	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","status":"success", "message" : ""}';
 	sendResultInfoAsJson( $retValue );
 }
