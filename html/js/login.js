@@ -19,7 +19,7 @@ async function login(username, password) {
     method: "POST",
     body: JSON.stringify({
       login: username,
-      password: password
+      password: sha256(password)
     })
   });
 

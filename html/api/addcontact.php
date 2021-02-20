@@ -40,17 +40,17 @@ $phone = "";
 
 if(!hasName($fname, $lname))
 {
-    returnMessage("error", "Error: No name for contact.");
+    returnMessage("error", "No name for contact.");
     exit();
 }
 
 if (empty($phonenum))
-    returnMessage("error", "Error: No phonenumber for contact");
+    returnMessage("error", "No phonenumber for contact");
 #If phone number isn't left blank, it's checked to see if it's in a valid format. If not, gives error, if has hyphens, they're removed. 
 #Only accepts 7 and 10 digit phone numbers.
 if (!validPhone($phonenum))
 {
-    returnMessage("error","Error: ".$phonenum." is not a properly formatted phone number");
+    returnMessage("error","".$phonenum." is not a properly formatted phone number");
     exit();
 }
 
@@ -60,7 +60,7 @@ $phone = sanitizePhone($phonenum);
 #If email was provided confirms it's properly formatted in a name@host.something
 if (!empty($email) && !validEmail($email))
 {
-    returnMessage("error","Error: ".$email." is not a proper email.");
+    returnMessage("error","".$email." is not a proper email.");
     exit();
 }
 
@@ -70,12 +70,12 @@ $errorCount   = searchTable($contactTable,$fname,$lname,$phone);
 
 if ($errorCount == 1)
 {
-    returnMessage("error", "Error: Contact already exists.");
+    returnMessage("error", "Contact already exists.");
     exit();
 }
 elseif($errorCount == 2)
 {
-    returnMessage("error", "Error: Phone number already in use.");
+    returnMessage("error", "Phone number already in use.");
     exit();
 }
 createContact($conn,$userId,$fname,$lname,$phone,$email, $date);
@@ -95,5 +95,5 @@ function returnMessage($status, $message)
 *   Whether it succeeds or fails, a json object will be sent with a status and message field that will
 *   be presented as such:
 *   {"success":""} used for when no issues occur.
-*   {"error":"Error: Message indicating what issue arises."} for failure situations.
+*   {"error":"Message indicating what issue arises."} for failure situations.
 */

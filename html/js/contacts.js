@@ -1,9 +1,25 @@
 // Event Listeners
-const searchInput = document.querySelector("#contact-search-input")
+const searchInput = document.querySelector("#contact-search-input");
 searchInput.addEventListener("keyup", (e) => updateTable(e.target.value));
 
+// Speech recognition
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.onstart = () => console.log("Voice recording...");
+recognition.onresult = (event) => {
+  searchInput.value = event.results[event.resultIndex][0].transcript
+  updateTable(searchInput.value);
+};
+
 function main() {
+  if (readCookie() == null)
+    document.location.href = "index.html";
+
   updateTable("");
+}
+
+function startSpeechRec() {
+  recognition.start();
 }
 
 async function getContacts(searchStr) {
@@ -12,7 +28,7 @@ async function getContacts(searchStr) {
   const response = await fetch(apiUrl, {
     method: "POST",
     body: JSON.stringify({
-      userId: 3,
+      userId: readCookie().userId,
       searchStr: searchStr
     })
   });
@@ -36,8 +52,6 @@ function updateContactList(table) {
       // Save phone number for delete
       if (key == "phone")
         phoneNumber = row[key];
-      if (key == "dateCreated")
-        continue;
 
       tableRow.insertCell().innerHTML = row[key];
     }

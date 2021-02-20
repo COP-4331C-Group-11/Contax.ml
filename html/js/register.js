@@ -16,7 +16,7 @@ form.addEventListener("submit", function (e) {
       firstName: firstName,
       lastName: lastName,
       login: login,
-      password: password
+      password: sha256(password)
     }),
     // adding xml headers
     headers: {
@@ -33,7 +33,7 @@ form.addEventListener("submit", function (e) {
         return;
       }
       // if successful will redirect to contact page and make a cookie with the user data
-      window.location.href = "contactPage.html";
       saveCookie(json.firstName, json.lastName, json.id);
+      window.location.href = "contactPage.html";
     });
 });
