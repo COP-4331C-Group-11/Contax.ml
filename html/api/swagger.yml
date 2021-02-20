@@ -1,6 +1,6 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  version: '1.0.0'
+  version: "1.0.0"
   title: Contax API
   description: Control users and contacts
 host: contax.ml
@@ -22,12 +22,12 @@ paths:
           name: loginItem
           description: Login
           schema:
-            $ref: '#/definitions/Login'
+            $ref: "#/definitions/Login"
       responses:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/UserData'
+            $ref: "#/definitions/UserData"
         404:
           description: URL Not Found
           schema:
@@ -94,16 +94,16 @@ paths:
           name: searchParameters
           description: Search parameters
           schema:
-            $ref: '#/definitions/searchParams'
+            $ref: "#/definitions/searchParams"
       responses:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/contactTable'
+            $ref: "#/definitions/contactTable"
         404:
           description: URL Not Found
           schema:
-            $ref: '#/definitions/404Response'
+            $ref: "#/definitions/404Response"
   /deleteContact.php:
     post:
       tags:
@@ -118,16 +118,41 @@ paths:
           name: deleteParameters
           description: Delete parameters
           schema:
-            $ref: '#/definitions/deleteParams'
+            $ref: "#/definitions/deleteParams"
       responses:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/simpleResponse'
+            $ref: "#/definitions/simpleResponse"
         404:
           description: URL Not Found
           schema:
-            $ref: '#/definitions/404Response'
+            $ref: "#/definitions/404Response"
+  /addContact.php:
+    post:
+      tags:
+        - Contacts
+      description: Adds contact using at least a first and last name
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: addContactParameters
+          description: addContact Parameters
+          schema:
+            $ref: "#/definitions/addContactParams"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/successResponse"
+        404:
+          description: URL Not Found
+          schema:
+            $ref: "#/definitions/404Response"
+
 definitions:
   404Response:
     type: object
@@ -234,7 +259,7 @@ definitions:
     properties:
       id:
         type: string
-        example: '1'
+        example: "1"
       firstName:
         type: string
         example: John
@@ -246,24 +271,24 @@ definitions:
         example: john
   contactTable:
     type: object
-    properties: 
+    properties:
       status:
         type: string
         example: success
       message:
         type: string
-        example: 
+        example:
       table:
         type: array
         items:
           type: object
-          properties: 
+          properties:
             id:
               type: integer
               example: 1
             userId:
               type: integer
-              example: 1  
+              example: 1
             firstName:
               type: string
               example: John
@@ -284,7 +309,7 @@ definitions:
     properties:
       id:
         type: string
-        example: '1'
+        example: "1"
       firstName:
         type: string
         example: John
@@ -294,3 +319,33 @@ definitions:
       phone:
         type: string
         example: "4074206969"
+  addContactParams:
+    type: object
+    properties:
+      userId:
+        type: integer
+        example: 1
+      firstname:
+        type: string
+        example: Peter
+      lastname:
+        type: string
+        example: Yosemity
+      phonenumber:
+        type: string
+        example: "9958576123"
+      email:
+        type: string
+        example: someone@something.com
+      date:
+        type: string
+        example: "2021-05-23"
+  successResponse:
+    type: object
+    properties:
+      status:
+        type: string
+        example: Success
+      message:
+        type: string
+        example: ""
