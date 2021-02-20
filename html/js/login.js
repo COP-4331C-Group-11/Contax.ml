@@ -39,6 +39,6 @@ async function login(username, password) {
     return;
   }
   // if successful will redirect to contact page and make a cookie with the user data
-  window.location.href = "contactPage.html";
   saveCookie(json.firstName, json.lastName, json.id);
+  window.location.href = "contactPage.html";
 }
